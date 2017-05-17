@@ -1,0 +1,584 @@
+canvas {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none; }
+
+.titulo {
+  text-align: center; }
+
+.informacion {
+  text-align: right; }
+
+.boton-informacion {
+  display: inline-block; }
+
+.imagen-avatar {
+  width: 50px;
+  height: 50px; }
+
+.container .text-muted {
+  margin: 0.8% 0; }
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-left: 1%; }
+
+.enfocar {
+  background-color: #10528a;
+  color: #fff; }
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff; }
+
+.row {
+  margin-bottom: 20px; }
+
+.row .row {
+  margin-top: 10px;
+  margin-bottom: 0; }
+
+[class*="col-"] {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0.1%;
+  padding-right: 0%;
+  /*background-color: #eee;
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid #ddd;
+  border: 1px solid rgba(86,61,124,.2);*/ }
+
+.datosBarra {
+  display: block;
+  margin-left: 0%;
+  margin-right: 0.1%;
+  margin-bottom: 1%; }
+
+.numeros {
+  color: blue; }
+
+.verde {
+  color: green; }
+
+.rojo {
+  color: red; }
+
+.naranja {
+  color: orange; }
+
+.blanco {
+  color: #fff; }
+
+.datosPrincipales {
+  margin-top: 1%; }
+
+.imgPrincipal {
+  width: 300px;
+  height: 470px;
+  margin-left: 4%;
+  margin-top: 0.1%; }
+
+.imgLinea {
+  margin-bottom: 40%; }
+
+#modalVerde {
+  background-color: #419641;
+  color: #fff; }
+
+#modalRojo {
+  background-color: #c12e2a;
+  color: #fff; }
+
+#imgHeader {
+  display: inline-block; }
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover {
+  background-color: #10528a; }
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .open > a {
+  background: #10528a;
+  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.25); }
+
+.titulo {
+  font-size: 2em; }
+
+input.ng-invalid.ng-dirty {
+  border: 1px solid red; }
+
+select.ng-invalid.ng-dirty {
+  border: 1px solid red; }
+
+textarea.ng-invalid.ng-dirty {
+  border: 1px solid red; }
+
+.form-control {
+  display: inline-block;
+  width: 98%; }
+
+.rojoRequired {
+  display: inline-block;
+  color: red;
+  font-size: 1.5em; }
+
+#boton-form-info {
+  margin-left: 95%;
+  margin-bottom: 1%; }
+
+#demo {
+  width: 70%;
+  margin-left: 27.5%; }
+
+textarea {
+  resize: none; }
+
+body {
+  background: #b3bdbd; }
+  @media screen and (max-width: 2560px) {
+    body {
+      font-size: 2.7em; } }
+  @media screen and (max-width: 1440px) {
+    body {
+      font-size: 1.5em; } }
+  @media screen and (max-width: 1024px) {
+    body {
+      font-size: 1.1em; } }
+  @media screen and (max-width: 768px) {
+    body {
+      font-size: 1em; } }
+  @media screen and (max-width: 425px) {
+    body {
+      font-size: 0.9em; } }
+
+.box-principal {
+  margin-top: 4%;
+  margin-bottom: 4.7%; }
+  @media screen and (max-width: 1024px) {
+    .box-principal {
+      margin-top: 5%; } }
+  @media screen and (max-width: 768px) {
+    .box-principal {
+      margin-top: 6%; } }
+  @media screen and (max-width: 425px) {
+    .box-principal {
+      margin-top: 10%; } }
+  @media screen and (max-width: 375px) {
+    .box-principal {
+      margin-top: 11%; } }
+  @media screen and (max-width: 320px) {
+    .box-principal {
+      margin-top: 13%; } }
+
+#negro {
+  background: #000;
+  border-color: #000; }
+  @media screen and (max-width: 768px) {
+    #negro {
+      margin-top: -9px; } }
+
+.blancoTitulo {
+  margin-left: 0%;
+  font-size: 1.2em;
+  color: #fff;
+  display: inline-block; }
+  @media screen and (max-width: 2560px) {
+    .blancoTitulo {
+      margin-top: 3.5%;
+      margin-left: -90%;
+      font-size: 2.5em; } }
+  @media screen and (max-width: 1440px) {
+    .blancoTitulo {
+      margin-top: 0%;
+      margin-left: 0%;
+      font-size: 1em; } }
+  @media screen and (max-width: 768px) {
+    .blancoTitulo {
+      margin-top: 2%;
+      margin-left: 0%;
+      font-size: 0.8em; } }
+  @media screen and (max-width: 320px) {
+    .blancoTitulo {
+      margin-top: 2%;
+      margin-left: -3%;
+      font-size: 0.6em; } }
+
+@media screen and (max-width: 768px) {
+  #menu {
+    margin-right: -3%; } }
+@media screen and (max-width: 425px) {
+  #menu {
+    width: 100%; } }
+
+@media screen and (max-width: 768px) {
+  .navHeaderCollapse {
+    margin-top: 1%; } }
+@media screen and (max-width: 2560px) {
+  .navHeaderCollapse ul li {
+    height: 3em; } }
+@media screen and (max-width: 1024px) {
+  .navHeaderCollapse ul li {
+    height: 4.5em;
+    margin-top: -0.5%; } }
+@media screen and (max-width: 768px) {
+  .navHeaderCollapse ul li {
+    height: 4.5em;
+    margin-top: -0.1%; } }
+@media screen and (max-width: 425px) {
+  .navHeaderCollapse ul li {
+    display: inline-block;
+    margin-top: 1%; } }
+@media screen and (max-width: 2560px) {
+  .navHeaderCollapse ul li a {
+    margin-top: 0.8em; } }
+@media screen and (max-width: 1440px) {
+  .navHeaderCollapse ul li a {
+    margin-top: -0.1em; } }
+@media screen and (max-width: 1024px) {
+  .navHeaderCollapse ul li a {
+    margin-top: 0em; } }
+@media screen and (max-width: 768px) {
+  .navHeaderCollapse ul li a {
+    margin-top: 0em;
+    font-size: 1.22em; } }
+@media screen and (max-width: 2560px) {
+  .navHeaderCollapse ul li a .glyphicon-chevron-down {
+    font-size: 0.7em; } }
+@media screen and (max-width: 1440px) {
+  .navHeaderCollapse ul li a .glyphicon-chevron-down {
+    font-size: 0.7em; } }
+.navHeaderCollapse ul li:hover {
+  background-color: #10528a; }
+
+@media screen and (max-width: 2560px) {
+  #barraMenu {
+    margin-top: -0.5%;
+    margin-right: -50%;
+    font-size: 1.3em; } }
+@media screen and (max-width: 1440px) {
+  #barraMenu {
+    margin-top: 0.3%;
+    margin-right: 0%;
+    font-size: 1em;
+    margin-bottom: -0.1%; } }
+
+#botonResponsive {
+  margin-top: 3.5%;
+  margin-bottom: 0%; }
+  @media screen and (max-width: 375px) {
+    #botonResponsive {
+      margin-top: 4%; } }
+  @media screen and (max-width: 320px) {
+    #botonResponsive {
+      margin-top: 4.5%; } }
+
+.user {
+  margin-left: 8%;
+  color: #000; }
+  @media screen and (max-width: 425px) {
+    .user {
+      color: white;
+      font-size: 1em; } }
+
+.dropdown-menu #hover a {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  width: 100%; }
+  @media screen and (max-width: 425px) {
+    .dropdown-menu #hover a {
+      color: white;
+      font-size: 1.5em; } }
+.dropdown-menu #hover a:hover {
+  color: white;
+  background-color: #10528a; }
+  .dropdown-menu #hover a:hover div:hover {
+    background-color: #10528a; }
+@media screen and (max-width: 768px) {
+  .dropdown-menu #hover {
+    font-size: 10px; } }
+@media screen and (max-width: 2560px) {
+  .dropdown-menu {
+    font-size: 1em;
+    width: 12em; } }
+@media screen and (max-width: 1440px) {
+  .dropdown-menu {
+    font-size: 1em;
+    width: 12em; } }
+@media screen and (max-width: 1024px) {
+  .dropdown-menu {
+    font-size: 1.3em;
+    width: 10em; } }
+@media screen and (max-width: 768px) {
+  .dropdown-menu {
+    font-size: 1.3em;
+    width: 10em; } }
+
+#cicloImagenes {
+  margin-left: 30%;
+  margin-top: -1%; }
+
+.columDerecha {
+  display: inline-block;
+  position: fixed;
+  background: #b3bdbd;
+  min-height: 39em; }
+  @media screen and (max-width: 425px) {
+    .columDerecha {
+      display: block;
+      position: relative;
+      margin-top: 1%; } }
+  @media screen and (max-width: 2560px) {
+    .columDerecha #seleccione {
+      font-size: 1.5em; } }
+  @media screen and (max-width: 1440px) {
+    .columDerecha #seleccione {
+      font-size: 1.1em; } }
+  @media screen and (max-width: 1024px) {
+    .columDerecha #seleccione {
+      font-size: 1.2em; } }
+  @media screen and (max-width: 425px) {
+    .columDerecha #seleccione {
+      font-size: 1.7em; } }
+  @media screen and (max-width: 2560px) {
+    .columDerecha h5 {
+      font-size: 1em; } }
+  @media screen and (max-width: 1440px) {
+    .columDerecha h5 {
+      font-size: 1em; } }
+  @media screen and (max-width: 1024px) {
+    .columDerecha h5 {
+      font-size: 1em; } }
+  @media screen and (max-width: 425px) {
+    .columDerecha h5 {
+      font-size: 1.5em; } }
+
+@media screen and (max-width: 2560px) {
+  #lineaParaEstadistica {
+    height: 50px;
+    font-size: 24px; } }
+@media screen and (max-width: 1440px) {
+  #lineaParaEstadistica {
+    height: 35px;
+    font-size: 14px; } }
+@media screen and (max-width: 1024px) {
+  #lineaParaEstadistica {
+    height: 30px;
+    font-size: 12px; } }
+
+@media screen and (max-width: 768px) {
+  #titulosBarra {
+    font-size: 0.8em; } }
+@media screen and (max-width: 425px) {
+  #titulosBarra {
+    font-size: 1.5em; } }
+
+@media screen and (max-width: 2560px) {
+  .areaTrabajo .panel-title {
+    font-size: 1.5em; } }
+@media screen and (max-width: 1440px) {
+  .areaTrabajo .panel-title {
+    font-size: 1.4em; } }
+@media screen and (max-width: 1024px) {
+  .areaTrabajo .panel-title {
+    font-size: 1.3em; } }
+
+@media screen and (max-width: 425px) {
+  .control-label {
+    margin-right: -6%;
+    margin-left: 6%; } }
+@media screen and (max-width: 320px) {
+  .control-label {
+    margin-right: -6%;
+    margin-left: 6%; } }
+
+@media screen and (max-width: 2560px) {
+  .form-control {
+    width: 97%;
+    height: 2em;
+    font-size: 1em; } }
+@media screen and (max-width: 1440px) {
+  .form-control {
+    width: 97%;
+    height: 2.5em;
+    font-size: 1em; } }
+@media screen and (max-width: 1024px) {
+  .form-control {
+    width: 97%;
+    height: 2.5em;
+    font-size: 1em; } }
+@media screen and (max-width: 768px) {
+  .form-control {
+    width: 97%;
+    height: 3em;
+    font-size: 1.1em; } }
+@media screen and (max-width: 425px) {
+  .form-control {
+    width: 94%;
+    height: 3em;
+    font-size: 1.1em; } }
+@media screen and (max-width: 320px) {
+  .form-control {
+    margin-top: 8%;
+    width: 95%;
+    height: 3em;
+    font-size: 1.1em; } }
+
+.dataTables_empty {
+  color: red; }
+  @media screen and (max-width: 2560px) {
+    .dataTables_empty {
+      font-size: 2em; } }
+  @media screen and (max-width: 1440px) {
+    .dataTables_empty {
+      font-size: 1em; } }
+  @media screen and (max-width: 1024px) {
+    .dataTables_empty {
+      font-size: 1.5em; } }
+  @media screen and (max-width: 768px) {
+    .dataTables_empty {
+      font-size: 1.1em; } }
+
+@media screen and (max-width: 2560px) {
+  thead {
+    font-size: 1.5em; } }
+@media screen and (max-width: 1440px) {
+  thead {
+    font-size: 1em; } }
+@media screen and (max-width: 1024px) {
+  thead {
+    font-size: 0.8em; } }
+@media screen and (max-width: 768px) {
+  thead {
+    font-size: 0.6em; } }
+@media screen and (max-width: 375px) {
+  thead {
+    font-size: 0.54em; } }
+
+@media screen and (max-width: 2560px) {
+  tbody {
+    font-size: 1.2em; } }
+@media screen and (max-width: 1440px) {
+  tbody {
+    font-size: 0.9em; } }
+@media screen and (max-width: 1024px) {
+  tbody {
+    font-size: 0.6em; } }
+@media screen and (max-width: 768px) {
+  tbody {
+    font-size: 0.54em; } }
+@media screen and (max-width: 375px) {
+  tbody {
+    font-size: 0.54em; } }
+
+@media screen and (max-width: 2560px) {
+  .btn {
+    font-size: 1.2em; } }
+@media screen and (max-width: 1440px) {
+  .btn {
+    font-size: 1em; } }
+@media screen and (max-width: 1024px) {
+  .btn {
+    font-size: 1em; } }
+@media screen and (max-width: 768px) {
+  .btn {
+    font-size: 1em; } }
+@media screen and (max-width: 425px) {
+  .btn {
+    font-size: 1.2em; } }
+
+.agregar {
+  margin-left: 85%;
+  margin-bottom: 1%; }
+  @media screen and (max-width: 425px) {
+    .agregar {
+      margin-left: 75%; } }
+
+.footer {
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background: #000; }
+  @media screen and (max-width: 2560px) {
+    .footer {
+      height: 3.5em; } }
+  @media screen and (max-width: 425px) {
+    .footer {
+      height: 4.2em; } }
+  @media screen and (max-width: 320px) {
+    .footer {
+      height: 7em; } }
+  @media screen and (max-width: 2560px) {
+    .footer p {
+      width: 64em; } }
+  @media screen and (max-width: 425px) {
+    .footer p {
+      width: 40em; } }
+  @media screen and (max-width: 375px) {
+    .footer p {
+      width: 40em; } }
+  @media screen and (max-width: 320px) {
+    .footer p {
+      width: 29em; } }
+
+@media screen and (max-width: 2560px) {
+  .modal-content h4 {
+    font-size: 1.2em; } }
+@media screen and (max-width: 1024px) {
+  .modal-content h4 {
+    font-size: 1.2em; } }
+@media screen and (max-width: 768px) {
+  .modal-content h4 {
+    font-size: 1.2em; } }
+@media screen and (max-width: 425px) {
+  .modal-content h4 {
+    font-size: 1.5em; } }
+@media screen and (max-width: 320px) {
+  .modal-content h4 {
+    font-size: 1.5em; } }
+
+.modal-dialog {
+  /*@media screen and (max-width: $pantalla-4K)
+  {
+    width: 40em;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    width: 40em;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    width: 30em;
+  }
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    width: 45em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-M)
+  {
+    width: 40em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-S)
+  {
+    width: 33.5em;
+  }*/ }
+
+.inputTelefonos input {
+  width: 95.5%; }
+  @media screen and (max-width: 425px) {
+    .inputTelefonos input {
+      width: 90%; } }
+  @media screen and (max-width: 320px) {
+    .inputTelefonos input {
+      margin-top: 0%; } }
+.inputTelefonos #codigo {
+  width: 92%; }
+  @media screen and (max-width: 425px) {
+    .inputTelefonos #codigo {
+      width: 90%; } }
+  @media screen and (max-width: 320px) {
+    .inputTelefonos #codigo {
+      width: 88%; } }
+
+/*# sourceMappingURL=mio.css.map */
