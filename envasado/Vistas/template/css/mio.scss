@@ -1,0 +1,922 @@
+// VARIABLES DE -> @MEDIA SCREEN AND (max-width: $VARIABLE)
+$pantalla-4K:2560px;
+$pantalla-Laptop-L:1440px;
+$pantalla-Laptop:1024px;
+$pantalla-Tablet:768px;
+$pantalla-Mobile-L:425px;
+$pantalla-Mobile-M:375px;
+$pantalla-Mobile-S:320px;
+// FIN DE LAS VARIABLES DE -> @MEDIA SCREEN AND (max-width: $VARIABLE)
+$color-negro:#000;
+$color-azul:#10528a;
+$color-gris:#b3bdbd;
+$color-verde:#419641;
+$color-rojo: #c12e2a;
+
+canvas
+{
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.titulo
+{
+  text-align: center;
+}
+
+.informacion
+{
+  text-align: right;
+}
+
+.boton-informacion
+{
+  display: inline-block;
+}
+
+.imagen-avatar
+{
+  width: 50px;
+  height: 50px;
+}
+
+.container .text-muted
+{
+  margin: 0.8% 0;
+}
+
+.footer > .container
+{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-left: 1%;
+}
+
+.enfocar
+{
+	background-color: $color-azul;
+  color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a 
+{
+	color: #fff;
+  //margin-top: 1.5em;
+}
+
+//////////COL-///////////////
+.row {
+  margin-bottom: 20px;
+}
+.row .row {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+[class*="col-"] {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0.1%;
+  padding-right: 0%; 
+  /*background-color: #eee;
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid #ddd;
+  border: 1px solid rgba(86,61,124,.2);*/
+}
+
+/////////////FIN//COL-//////////
+
+.datosBarra
+{
+  display: block;
+  margin-left: 0%;
+  margin-right: 0.1%;
+  margin-bottom: 1%;
+}
+
+.numeros
+{
+  color: blue;
+}
+
+.verde
+{
+  color: green;
+}
+
+.rojo
+{
+  color: red;
+}
+
+.naranja
+{
+  color: orange;
+}
+
+.blanco
+{
+  color: #fff;
+}
+
+.datosPrincipales
+{
+  margin-top: 1%;
+}
+
+.imgPrincipal
+{
+  width: 300px;
+  height: 470px;
+  margin-left: 4%;
+  margin-top: 0.1%;
+}
+
+.imgLinea
+{
+  margin-bottom: 40%;
+}
+
+#modalVerde
+{
+  background-color: $color-verde;
+  color: #fff;
+}
+
+#modalRojo
+{
+  background-color: $color-rojo;
+  color: #fff;
+}
+
+#imgHeader
+{
+  display: inline-block;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover
+{
+  background-color: $color-azul;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a
+{
+  background: $color-azul;
+  box-shadow: inset 0 0px 0px rgba(0,0,0,.25);
+}
+
+.titulo
+{
+  font-size: 2em;
+}
+
+input.ng-invalid.ng-dirty
+{
+  border: 1px solid red;
+}
+
+select.ng-invalid.ng-dirty
+{
+  border: 1px solid red;
+}
+
+textarea.ng-invalid.ng-dirty
+{
+  border: 1px solid red;
+}
+
+.form-control
+{
+  display: inline-block;
+  width: 98%;
+}
+
+.rojoRequired
+{
+  display: inline-block;
+  color: red;
+  font-size: 1.5em;
+}
+
+#boton-form-info
+{
+  margin-left: 95%;
+  margin-bottom: 1%;
+}
+
+#demo
+{
+  width: 70%;
+  margin-left: 27.5%;
+}
+
+textarea
+{
+  resize: none;
+}
+
+//
+//
+// @MEDIA SCREEN AND (max-width: $VARIABLE)
+//
+// Acomodar el dropdown para que se vea en telefonos o cambiar por un Popover
+
+body
+{
+  background:$color-gris;
+
+  @media screen and (max-width: $pantalla-4K)
+  {
+    font-size: 2.7em;
+  }
+
+  @media screen and (max-width: $pantalla-Laptop-L)
+  {
+    font-size: 1.5em;
+  }
+  
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    font-size: 1.1em;
+  }
+
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+   font-size: 1em;
+  }
+
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    font-size: 0.9em;
+  }
+}
+
+.box-principal
+{
+    margin-top: 4%;
+    margin-bottom: 4.7%;
+
+    @media screen and (max-width: $pantalla-Laptop)
+    {
+      margin-top: 5%;
+    }
+
+    @media screen and (max-width: $pantalla-Tablet)
+    {
+      margin-top: 6%;
+    }
+
+    @media screen and (max-width: $pantalla-Mobile-L)
+    {
+      margin-top: 10%;
+    }
+
+    @media screen and (max-width: $pantalla-Mobile-M)
+    {
+      margin-top: 11%;
+    }
+
+    @media screen and (max-width: $pantalla-Mobile-S)
+    {
+      margin-top: 13%;
+    }
+}
+
+#negro
+{
+  background: $color-negro;
+  border-color: $color-negro;
+
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    margin-top: -9px;
+  }
+}
+
+.blancoTitulo
+{
+  margin-left: 0%;
+  font-size: 1.2em;
+  color: #fff;
+  display: inline-block;
+
+  @media screen and (max-width: $pantalla-4K)
+  {
+    margin-top: 3.5%;
+    margin-left: -90%;
+    font-size: 2.5em;
+  }
+  @media screen and (max-width: $pantalla-Laptop-L)
+  {
+    margin-top: 0%;
+    margin-left: 0%;
+    font-size: 1em;
+  }
+  
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    margin-top: 2%;
+    margin-left: 0%;
+    font-size: 0.8em;
+  }
+
+  @media screen and (max-width: $pantalla-Mobile-S)
+  {
+    margin-top: 2%;
+    margin-left: -3%;
+    font-size: 0.6em;
+  }
+}
+
+#menu
+{
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    margin-right: -3%;
+  }
+
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    width: 100%;
+  }
+}
+
+.navHeaderCollapse
+{
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    margin-top: 1%;
+  }
+  ul
+  {
+    li
+    {
+      @media screen and (max-width: $pantalla-4K)
+      {
+        height: 3em;
+      }
+
+      @media screen and (max-width: $pantalla-Laptop)
+      {
+        height: 4.5em;
+        margin-top: -0.5%;
+      }
+
+      @media screen and (max-width: $pantalla-Tablet)
+      {
+        height: 4.5em;
+        margin-top: -0.1%;
+      }
+      @media screen and (max-width: $pantalla-Mobile-L)
+      {
+        display: inline-block;
+        margin-top: 1%;
+      }
+
+      a
+      {
+        @media screen and (max-width: $pantalla-4K)
+        {
+          margin-top: 0.8em;
+        }
+        @media screen and (max-width: $pantalla-Laptop-L)
+        {
+          margin-top: -0.1em;
+        }
+        @media screen and (max-width: $pantalla-Laptop)
+        {
+          margin-top: 0em;
+        }
+        @media screen and (max-width: $pantalla-Tablet)
+        {
+          margin-top: 0em;
+          font-size: 1.22em;
+        }
+
+        .glyphicon-chevron-down
+        {
+          @media screen and (max-width: $pantalla-4K)
+          {
+            font-size: 0.7em;
+          }
+
+          @media screen and (max-width: $pantalla-Laptop-L)
+          {
+            font-size: 0.7em;
+          }
+        }
+      }
+
+    }
+    li:hover
+    {
+      background-color: $color-azul;
+    }
+  }
+}
+
+#barraMenu
+{
+  @media screen and (max-width: $pantalla-4K)
+  {
+    margin-top: -0.5%;
+    margin-right: -50%;
+    font-size: 1.3em;
+  }
+  @media screen and (max-width: $pantalla-Laptop-L)
+  {
+    margin-top: 0.3%;
+    margin-right: 0%;
+    font-size: 1em;
+    margin-bottom: -0.1%;
+  }
+}
+
+#botonResponsive
+{
+  margin-top: 3.5%;
+  margin-bottom: 0%;
+
+  @media screen and (max-width: $pantalla-Mobile-M)
+  {
+    margin-top: 4%;
+  }
+
+  @media screen and (max-width: $pantalla-Mobile-S)
+  {
+    margin-top: 4.5%;
+  }
+}
+
+.user
+{
+  margin-left: 8%;
+  color: #000;
+
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    color: white;
+    font-size: 1em;
+  }
+}
+
+.dropdown-menu
+{
+  #hover
+  {
+    a
+    {
+      text-decoration: none;
+      text-align: center;
+      color: black;
+      width: 100%;
+
+      @media screen and (max-width: $pantalla-Mobile-L)
+      {
+        color: white;
+        font-size: 1.5em;
+      }
+    }
+
+    a:hover
+    {
+      color: white;
+      background-color: $color-azul;
+      div:hover
+      {
+        background-color: $color-azul;
+      }
+    }
+    @media screen and (max-width: $pantalla-Tablet)
+    {
+      font-size: 10px;
+    }
+  }
+
+  @media screen and (max-width: $pantalla-4K)
+  {
+    font-size: 1em;
+    width: 12em;
+  }
+  @media screen and (max-width: $pantalla-Laptop-L)
+  {
+    font-size: 1em;
+    width: 12em;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    font-size: 1.3em;
+    width: 10em;
+  }
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    font-size: 1.3em;
+    width: 10em;
+  }
+}
+
+#cicloImagenes
+{
+  margin-left: 30%;
+  margin-top: -1%;
+
+  @media screen and (max-width: $pantalla-4K)
+  {
+    //background: red;
+  } 
+}
+
+.columDerecha
+{
+  display: inline-block;
+  position: fixed;
+  background: $color-gris;
+  min-height: 39em;
+
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    display: block;
+    position: relative;
+    margin-top: 1%;
+  }
+
+  #seleccione
+  {
+    @media screen and (max-width: $pantalla-4K)
+    {
+      font-size: 1.5em;
+    }
+    @media screen and (max-width: $pantalla-Laptop-L)
+    {
+      font-size: 1.1em;
+    }
+    @media screen and (max-width: $pantalla-Laptop)
+    {
+      font-size: 1.2em;
+    }
+    @media screen and (max-width: $pantalla-Mobile-L)
+    {
+      font-size: 1.7em;
+    }
+  }
+
+  h5
+  {
+    @media screen and (max-width: $pantalla-4K)
+    {
+      font-size: 1em;
+    }
+    @media screen and (max-width: $pantalla-Laptop-L)
+    {
+      font-size: 1em;
+    }
+    @media screen and (max-width: $pantalla-Laptop)
+    {
+      font-size: 1em;
+    }
+
+    @media screen and (max-width: $pantalla-Mobile-L)
+    {
+      font-size: 1.5em;
+    }
+  }
+}
+
+#lineaParaEstadistica
+{
+  @media screen and (max-width: $pantalla-4K)
+  {
+    height: 50px;
+    font-size: 24px;
+  }
+  @media screen and (max-width: $pantalla-Laptop-L)
+  {
+    height: 35px;
+    font-size: 14px;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+#titulosBarra
+{
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    font-size: 0.8em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    font-size: 1.5em;
+  }
+}
+
+.areaTrabajo
+{
+  .panel-title
+  {
+    @media screen and (max-width: $pantalla-4K)
+    {
+      font-size: 1.5em;
+    }
+    @media screen and (max-width: $pantalla-Laptop-L)
+    {
+      font-size: 1.4em;
+    }
+    @media screen and (max-width: $pantalla-Laptop)
+    {
+      font-size: 1.3em;
+    }
+  }
+}
+
+.control-label
+{
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    margin-right: -6%;
+    margin-left: 6%;
+  }
+
+  @media screen and (max-width: $pantalla-Mobile-S)
+  {
+    margin-right: -6%;
+    margin-left: 6%;
+  }
+}
+
+.form-control
+{
+    @media screen and (max-width: $pantalla-4K)
+    {
+      width: 97%;
+      height: 2em;
+      font-size: 1em;
+    }
+    @media screen and (max-width: $pantalla-Laptop-L)
+    {
+      width: 97%;
+      height: 2.5em;
+      font-size: 1em;
+    }
+    @media screen and (max-width: $pantalla-Laptop)
+    {
+      width: 97%;
+      height: 2.5em;
+      font-size: 1em;
+    }
+    @media screen and (max-width: $pantalla-Tablet)
+    {
+      width: 97%;
+      height: 3em;
+      font-size: 1.1em;
+    }
+    @media screen and (max-width: $pantalla-Mobile-L)
+    {
+      width: 94%;
+      height: 3em;
+      font-size: 1.1em;
+    }
+    @media screen and (max-width: $pantalla-Mobile-S)
+    {
+      margin-top: 8%;
+      width: 95%;
+      height: 3em;
+      font-size: 1.1em;
+    }
+}
+
+.dataTables_empty
+{
+  color: red; 
+  @media screen and (max-width: $pantalla-4K)
+  {
+    font-size: 2em;
+  }
+  @media screen and (max-width: $pantalla-Laptop-L)
+  {
+    font-size: 1em;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    font-size: 1.5em;
+  }
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    font-size: 1.1em;
+  }
+}
+
+thead
+{
+  @media screen and (max-width: $pantalla-4K)
+  {
+    font-size: 1.5em;
+  }
+  @media screen and (max-width: $pantalla-Laptop-L)
+  {
+    font-size: 1em;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    font-size: 0.8em;
+  }
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    font-size: 0.6em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-M)
+  {
+    font-size: 0.54em;
+  }
+}
+
+tbody
+{
+  @media screen and (max-width: $pantalla-4K)
+  {
+    font-size: 1.2em;
+  }
+  @media screen and (max-width: $pantalla-Laptop-L)
+  {
+    font-size: 0.9em;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    font-size: 0.6em;
+  }
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    font-size: 0.54em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-M)
+  {
+    font-size: 0.54em;
+  }
+}
+
+.btn
+{
+  @media screen and (max-width: $pantalla-4K)
+  {
+    font-size: 1.2em;
+  }
+  @media screen and (max-width: $pantalla-Laptop-L)
+  {
+    font-size: 1em;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    font-size: 1em;
+  }
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    font-size: 1em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    font-size: 1.2em;
+  }
+}
+
+.agregar
+{
+  margin-left: 85%;
+  margin-bottom: 1%;
+
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    margin-left: 75%;
+  }
+}
+
+.footer
+{
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background: $color-negro;
+
+  @media screen and (max-width: $pantalla-4K)
+  {
+    height: 3.5em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    height: 4.2em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-S)
+  {
+    height: 7em;
+  }
+
+  p
+  {
+    @media screen and (max-width: $pantalla-4K)
+    {
+      width: 64em;
+    }
+    @media screen and (max-width: $pantalla-Mobile-L)
+    {
+      width: 40em;
+    }
+    @media screen and (max-width: $pantalla-Mobile-M)
+    {
+      width: 40em;
+    }
+    @media screen and (max-width: $pantalla-Mobile-S)
+    {
+      width: 29em;
+    }
+  }
+}
+
+.modal-content
+{
+  h4
+  {
+    @media screen and (max-width: $pantalla-4K)
+    {
+      font-size: 1.2em;
+    }
+    @media screen and (max-width: $pantalla-Laptop)
+    {
+      font-size: 1.2em;
+    }
+    @media screen and (max-width: $pantalla-Tablet)
+    {
+      font-size: 1.2em;
+    }
+    @media screen and (max-width: $pantalla-Mobile-L)
+    {
+      font-size: 1.5em;
+    }
+    @media screen and (max-width: $pantalla-Mobile-S)
+    {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.modal-dialog
+{
+  /*@media screen and (max-width: $pantalla-4K)
+  {
+    width: 40em;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    width: 40em;
+  }
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    width: 30em;
+  }
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    width: 45em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-M)
+  {
+    width: 40em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-S)
+  {
+    width: 33.5em;
+  }*/
+}
+
+.inputTelefonos
+{
+  input
+  {
+    width: 95.5%;
+    @media screen and (max-width: $pantalla-Mobile-L)
+    {
+      width: 90%;
+    }
+    @media screen and (max-width: $pantalla-Mobile-S)
+    {
+      margin-top: 0%;
+    }
+  }
+
+  #codigo
+  {
+    width: 92%;
+    @media screen and (max-width: $pantalla-Mobile-L)
+    {
+      width: 90%;
+    }
+
+    @media screen and (max-width: $pantalla-Mobile-S)
+    {
+      width: 88%;
+    }
+  }
+}

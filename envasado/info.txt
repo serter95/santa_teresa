@@ -1,0 +1,30 @@
+para activar el modulo mod_rewrite primero hay que ir al archivo de configuracion de apache
+conseguir la linea que diga 'LoadModule rewrite_module modules/mod_rewrite.so' (linea: 163 o la que sea de tu apache) y quitar el '#'
+luego buscar la linea 'AllowOverride None' y cambiar por 'AllowOverride All' (linea: 251 o la que sea en el tuyo), esta linea debe estar dentro de una etiqueta la cual es la siguiente:
+
+ <Directory "/opt/PostgreSQL/EnterpriseDB-ApachePHP/apache/www"> 
+ // AQUI puede ser otra direccion Ejemplo /var/www ó 
+
+    aqui hay otras cosas escritas y una de ellas es esto:
+
+    	AllowOverride controls what directives may be placed in .htaccess files.
+		It can be "All", "None", or any combination of the keywords:
+   	AllowOverride FileInfo AuthConfig Limit
+
+		Debajo de esto esta esta linea : 'AllowOverride None ---> AllowOverride All'
+
+ </Directory>
+
+ luego reiniciar apache por terminal -># service apache2 restart
+ y habilitar el modulo: ->#a2enmod rewrite
+
+ luego de esto ir a la configuracion de mysql /etc/mysql
+ comentar la linea bind-address = 127.0.0.1
+
+ #bind-address = 127.0.0.1
+
+ reiniciar mysql y listo
+
+ Activar RewriteEngine
+
+ Si nada de esto sirve busca como activar rewrite_module en wamp en google

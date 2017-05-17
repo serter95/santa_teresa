@@ -1,0 +1,26 @@
+# para activar el modulo mod_rewrite primero hay que ir al archivo de configuracion de apache
+# conseguir la linea que diga 'LoadModule rewrite_module modules/mod_rewrite.so' (linea: 163) y quitar el '#'
+# luego buscar la linea 'AllowOverride None' y cambiar por 'AllowOverride All' (linea: 251), esta linea debe estar
+# dentro de una etiqueta la cual es la siguiente:
+
+# '<Directory "/opt/PostgreSQL/EnterpriseDB-ApachePHP/apache/www">'
+
+#    aqui hay otras cosas escritas y una de ellas es esto:
+
+#    	AllowOverride controls what directives may be placed in .htaccess files.
+#		It can be "All", "None", or any combination of the keywords:
+#   	AllowOverride FileInfo AuthConfig Limit
+
+#		Debajo de esto esta esta linea : 'AllowOverride None ---> AllowOverride All'
+
+# '</Directory>'
+
+# Activar RewriteEngine
+RewriteEngine On
+ 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Colocar Regla
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
