@@ -3,8 +3,7 @@
 
 	class menu
 	{
-		
-		public function __construct($url)
+		public static function index($url)
 		{
 ?>
 <nav class="navbar navbar-fixed-top navbar-inverse" id="negro">
@@ -123,6 +122,19 @@
 									} 
 								?>
 							>Etiquetas
+							</div>
+						</a>
+
+						<a href="<?php echo URL; ?>paletas/index">
+							<div
+								<?php if($url[0]=='paletas')
+									{ 
+								?>
+										class="enfocar"
+								<?php 
+									} 
+								?>
+							>Paletas
 							</div>
 						</a>
 	                </div>

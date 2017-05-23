@@ -28,3 +28,8 @@ luego buscar la linea 'AllowOverride None' y cambiar por 'AllowOverride All' (li
  Activar RewriteEngine
 
  Si nada de esto sirve busca como activar rewrite_module en wamp en google
+
+ #
+ # Mejorar la Programacion de los Modelos y los controladores
+ # Crear clases padre para cada uno
+ #

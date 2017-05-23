@@ -103,7 +103,7 @@
            <form class="form-signin" action="" method="post">
             <h2 class="form-signin-heading">Por Favor Ingrese al Sistema</h2>
             <label for="inputNombre" class="sr-only">Nombre de Usuario</label>
-            <input type="text" id="inputNombre" name="usuario" class="form-control" placeholder="Ingrese su nombre de Usuario" autofocus required>
+            <input type="text" id="inputNombre" name="usuario" class="form-control" placeholder="Ingrese su nombre de Usuario" autofocus="true" required>
             <label for="inputPassword" class="sr-only">Contraseña</label>
             <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Ingrese su Contraseña" required>
             <div class="checkbox">

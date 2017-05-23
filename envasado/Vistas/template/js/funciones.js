@@ -630,7 +630,52 @@ miAplicacion.controller('validarEtiquetas', function ($scope,$http)
 			if (data[1]==1)
 			{
 				$scope.valorNombre="El nombre de la etiqueta ya existe";
-				$scope.tapas.$invalid=true;
+				$scope.etiquetas.$invalid=true;
+			}
+			else
+			{
+				$scope.valorNombre="";
+			}
+		});
+	}
+});
+
+miAplicacion.controller('validarPaletas', function ($scope,$http)
+{
+	var accion = document.getElementById('accion').value;
+
+	$http.post(URL+'paletas/angular/botellas').success(function (data)
+	{
+		var res=data.split('<');
+		$scope.botellasPaletas=JSON.parse(res[0]);
+	});
+
+	if (accion=='editar')
+	{
+		var id=document.getElementById('id').value;
+
+		$http.post(URL+'paletas/angular/editar_'+id).success(function (data)
+		{
+			var res=data.split('<');
+			$scope.editPaleta=JSON.parse("["+res[0]+"]");
+		});
+	}
+
+	$scope.validarNombre=function ()
+	{
+		var nombre=document.getElementById('nombre').value;
+
+		if (accion=='editar')
+		{
+			nombre=nombre+'_'+id;
+		}
+
+		$http.post(URL+'paletas/angular/nombre_'+nombre).success(function (data)
+		{
+			if (data[1]==1)
+			{
+				$scope.valorNombre="El nombre de la Paleta ya existe";
+				$scope.paletas.$invalid=true;
 			}
 			else
 			{
