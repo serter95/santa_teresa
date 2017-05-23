@@ -1,7 +1,7 @@
 <?php
 	namespace Modelos;
 
-	class Paletas
+	class Paletas extends Modelos implements Interfaz
 	{
 		private $id;
 		private $nombre;
@@ -9,13 +9,7 @@
 		private $cantidad_bulks;
 		private $foto;
 		private $id_botella;
-		private $con;
 		
-		function __construct()
-		{
-			$this->con = new Conexion();
-		}
-
 		public function set($atributo, $valor)
 		{
 			$this->$atributo=$valor;

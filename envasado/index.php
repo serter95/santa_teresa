@@ -7,6 +7,7 @@ error_reporting(0);
 $aux=explode('/', $_SERVER['REQUEST_URI']);
 define('REQUEST_URI', $aux[4]);
 define("URL", "http://".$_SERVER['HTTP_HOST']."/santa_teresa/envasado/");
+define("URL_VALIDAR", "http://".$_SERVER['HTTP_HOST']."/santa_teresa/");
 define("DS", DIRECTORY_SEPARATOR);
 define("ROOT", realpath(dirname(__FILE__)).DS);
 

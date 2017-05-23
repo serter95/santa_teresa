@@ -1,19 +1,13 @@
 <?php 
 	namespace Modelos;
 
-	class Tapas
+	class Tapas extends Modelos implements Interfaz
 	{
 		private $id;
 		private $nombre;
 		private $medida;
 		private $foto;
 		private $id_proveedor;
-		private $con;
-		
-		function __construct()
-		{
-			$this->con = new Conexion();
-		}
 
 		public function set($atributo, $valor)
 		{

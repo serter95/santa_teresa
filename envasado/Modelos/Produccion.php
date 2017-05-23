@@ -1,15 +1,8 @@
 <?php 
 	namespace Modelos;
 	
-	class Produccion
+	class Produccion extends Modelos
 	{
-		private $con;
-
-		public function __construct()
-		{
-			$this->con=new Conexion();
-		}
-
 		public function listar()
 		{
 			return $this->con->seleccionar("*", "lineas", "estatus=1");
