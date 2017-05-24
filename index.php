@@ -147,14 +147,17 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
     <?php
-      require_once 'envasado/Modelos/Conexion.php';
-      require_once 'envasado/Modelos/Login.php';
 
       if($_POST)
       {
-          $obj = new Modelos\Login();
+          require_once 'envasado/Modelos/Conexion.php';
+          require_once 'envasado/Modelos/Modelos.php';
+          require_once 'envasado/Modelos/Login.php';
+          require_once 'envasado/Controladores/loginController.php';
+          
+          $obj = new Controladores\loginController();
 
-          if ($obj->resultado!='BUENO')
+          if (!$obj->index())
           {
     ?>
           <script type="text/javascript">

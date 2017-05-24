@@ -2,24 +2,18 @@
 	namespace Controladores;
 	use Modelos\Personal as Personal;
 
-	class personalController
+	class personalController extends controlador implements metodos
 	{
-		private $personal;
+		private $objeto;
 
 		public function __construct()
 		{
-			$this->personal=new Personal();
-		}
-		
-		public function Mayus($variable)
-		{
-			$variable = strtr(trim(strtoupper($variable)),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
-			return $variable;
+			$this->objeto=new Personal();
 		}
 
 		public function index()
 		{	
-			return $datos=$this->personal->listar();
+			return $this->objeto->listar();
 		}
 
 		public function agregar()
@@ -42,35 +36,35 @@
 
 				$cedula=$_POST['nacionalidad'].$ci;
 				
-				$resultado=$this->personal->listar();
+				$resultado=$this->objeto->listar();
 
-				$this->personal->set("numeroPersonal", trim($_POST['numeroPersonal']));
-				$this->personal->set("cedula", $cedula);
-				$this->personal->set("nombres", $this->Mayus($_POST['nombres']));
-				$this->personal->set("apellidos", $this->Mayus($_POST['apellidos']));
-				$this->personal->set("departamento", $_POST['departamento']);
-				$this->personal->set("cargo", $_POST['cargo']);
-				$this->personal->set("estado", $_POST['estado']);
-				$this->personal->set("jornada", $_POST['jornada']);
+				$this->objeto->set("numeroPersonal", trim($_POST['numeroPersonal']));
+				$this->objeto->set("cedula", $cedula);
+				$this->objeto->set("nombres", $this->Mayus($_POST['nombres']));
+				$this->objeto->set("apellidos", $this->Mayus($_POST['apellidos']));
+				$this->objeto->set("departamento", $_POST['departamento']);
+				$this->objeto->set("cargo", $_POST['cargo']);
+				$this->objeto->set("estado", $_POST['estado']);
+				$this->objeto->set("jornada", $_POST['jornada']);
 
-				if (!preg_match("/^[0-9]{5,6}/", $this->personal->get("numeroPersonal")))
+				if (!preg_match("/^[0-9]{5,6}/", $this->objeto->get("numeroPersonal")))
 				{
 				    $errorRegistro='si';
 				}
 
-				if (!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?)?/", $this->personal->get("nombres")))
+				if (!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?)?/", $this->objeto->get("nombres")))
 				{
 				    $errorRegistro='si';
 				}
 
-				if (!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?)?/", $this->personal->get("apellidos")))
+				if (!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?)?/", $this->objeto->get("apellidos")))
 				{
 				    $errorRegistro='si';
 				}
 
 				while ($array=$resultado->fetch(\PDO::FETCH_ASSOC))
 				{
-					if ($array['numero_personal']==$this->personal->get("numeroPersonal") || $array['cedula']==$this->personal->get('cedula'))
+					if ($array['numero_personal']==$this->objeto->get("numeroPersonal") || $array['cedula']==$this->objeto->get('cedula'))
 					{
 						$errorRegistro='si';
 					}
@@ -82,17 +76,17 @@
 				}
 				else
 				{
-					$this->personal->add();
+					$this->objeto->add();
 				
 					$permitidos=array("image/jpeg","image/png","image/jpg");
 					$limite=700;
 					
 					if (in_array($_FILES['foto']["type"], $permitidos) && $_FILES["foto"]["size"]<=$limite*1024)
 					{
-						$this->personal->set("numeroPersonal", $_POST['numeroPersonal']);
-						$this->personal->set("cedula", $cedula);
+						$this->objeto->set("numeroPersonal", $_POST['numeroPersonal']);
+						$this->objeto->set("cedula", $cedula);
 
-						$datos=$this->personal->listarImagen();
+						$datos=$this->objeto->listarImagen();
 
 						if ($array=$datos->fetch(\PDO::FETCH_ASSOC))
 						{
@@ -101,13 +95,13 @@
 
 							$nombre=$nom[0].".".$nom[1];
 
-							$this->personal->set("id", $array["id"]);
-							$this->personal->set("foto", $nombre);
+							$this->objeto->set("id", $array["id"]);
+							$this->objeto->set("foto", $nombre);
 
 							$ruta="Vistas".DS."template".DS."imagenes".DS."avatars".DS.$nombre;
 							move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta);
 
-							$this->personal->subirImagen();
+							$this->objeto->subirImagen();
 
 							header("Location: ".URL."personal/index/exito-registrar");
 						}
@@ -124,8 +118,8 @@
 		{
 			if (!$_POST)
 			{
-				$this->personal->set("id",$id);
-				return $datos=$this->personal->view();
+				$this->objeto->set("id",$id);
+				return $datos=$this->objeto->view();
 			}
 			else
 			{
@@ -145,41 +139,41 @@
 
 				$cedula=$_POST['nacionalidad'].$ci;
 				
-				$resultado=$this->personal->listar();
+				$resultado=$this->objeto->listar();
 
-				$this->personal->set("id", $_POST['id']);
-				$this->personal->set("numeroPersonal", trim($_POST['numeroPersonal']));
-				$this->personal->set("cedula", $cedula);
-				$this->personal->set("nombres", $this->Mayus($_POST['nombres']));
-				$this->personal->set("apellidos", $this->Mayus($_POST['apellidos']));
-				$this->personal->set("departamento", $_POST['departamento']);
-				$this->personal->set("cargo", $_POST['cargo']);
-				$this->personal->set("estado", $_POST['estado']);
-				$this->personal->set("jornada", $_POST['jornada']);
+				$this->objeto->set("id", $_POST['id']);
+				$this->objeto->set("numeroPersonal", trim($_POST['numeroPersonal']));
+				$this->objeto->set("cedula", $cedula);
+				$this->objeto->set("nombres", $this->Mayus($_POST['nombres']));
+				$this->objeto->set("apellidos", $this->Mayus($_POST['apellidos']));
+				$this->objeto->set("departamento", $_POST['departamento']);
+				$this->objeto->set("cargo", $_POST['cargo']);
+				$this->objeto->set("estado", $_POST['estado']);
+				$this->objeto->set("jornada", $_POST['jornada']);
 
-				if (!preg_match("/^[0-9]{5,6}/", $this->personal->get("numeroPersonal")))
+				if (!preg_match("/^[0-9]{5,6}/", $this->objeto->get("numeroPersonal")))
 				{
 				    $errorRegistro='si';
 				}
 
-				if (!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?)?/", $this->personal->get("nombres")))
+				if (!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?)?/", $this->objeto->get("nombres")))
 				{
 				    $errorRegistro='si';
 				}
 
-				if (!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?)?/", $this->personal->get("apellidos")))
+				if (!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,}( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?( [A-Za-záéíóúñüÁÉÍÓÚÑÜ]{2,})?)?/", $this->objeto->get("apellidos")))
 				{
 				    $errorRegistro='si';
 				}
 
 				while ($array=$resultado->fetch(\PDO::FETCH_ASSOC))
 				{
-					if ($array['numero_personal']==$this->personal->get("numeroPersonal") && $array['id']!=$this->personal->get('id'))
+					if ($array['numero_personal']==$this->objeto->get("numeroPersonal") && $array['id']!=$this->objeto->get('id'))
 					{
 						$errorRegistro='si';
 					}
 
-					if ($array['cedula']==$this->personal->get('cedula') && $array['id']!=$this->personal->get('id'))
+					if ($array['cedula']==$this->objeto->get('cedula') && $array['id']!=$this->objeto->get('id'))
 					{
 						$errorRegistro='si';
 					}
@@ -191,7 +185,7 @@
 				}
 				else
 				{
-					$this->personal->edit();
+					$this->objeto->edit();
 
 					$permitidos=array("image/jpeg","image/png","image/jpg");
 					$limite=700;
@@ -203,12 +197,12 @@
 
 							$nombre=$nom[0].".".$nom[1];
 
-							$this->personal->set("foto", $nombre);
+							$this->objeto->set("foto", $nombre);
 
 							$ruta="Vistas".DS."template".DS."imagenes".DS."avatars".DS.$nombre;
 							move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta);
 
-							$this->personal->subirImagen();
+							$this->objeto->subirImagen();
 
 							header("Location: ".URL."personal/index/exito-modificar");
 					}
@@ -222,14 +216,14 @@
 
 		public function ver($id)
 		{
-			$this->personal->set("id", $id);
-			return $datos=$this->personal->view();
+			$this->objeto->set("id", $id);
+			return $datos=$this->objeto->view();
 		}
 
 		public function eliminar($id)
 		{
-			$this->personal->set("id", $id);
-			$this->personal->delete();
+			$this->objeto->set("id", $id);
+			$this->objeto->delete();
 
 			header("Location: ".URL."personal/index/exito-eliminar");
 		}
@@ -240,7 +234,7 @@
 
 			#echo "*aqui estoy*";
 
-			$consulta=$this->personal->listar();
+			$consulta=$this->objeto->listar();
 
 			if ($consulta->rowCount()>0)
 			{

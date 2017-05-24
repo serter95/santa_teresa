@@ -1,28 +1,19 @@
 <?php 
 	namespace Controladores;
 	use Modelos\Proveedores as Proveedores;
-	use Modelos\Conexion as Conexion;
-
-	class proveedoresController
+	
+	class proveedoresController extends controlador implements metodos
 	{
-		private $con;
-		private $con2;
+		private $objeto;
 
 		public function __construct()
 		{
-			$this->con=new Proveedores();
-			$this->con2=new Conexion();
-		}
-
-		public function Mayus($variable)
-		{
-			$variable = strtr(trim(strtoupper($variable)),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
-			return $variable;
+			$this->objeto=new Proveedores();
 		}
 		
 		public function index()
 		{
-			return $this->con->listar();
+			return $this->objeto->listar();
 		}
 
 		public function agregar()
@@ -59,17 +50,17 @@
 
 				$telefono=$codigo.'-'.$numero;
 
-				$this->con->set("nombre", $nombre);
-				$this->con->set("id_municipio", $_POST['municipio']);
-				$this->con->set("direccion", $direccion);
-				$this->con->set("telefono", $telefono);
-				$this->con->set("persona_contacto", $contacto);
+				$this->objeto->set("nombre", $nombre);
+				$this->objeto->set("id_municipio", $_POST['municipio']);
+				$this->objeto->set("direccion", $direccion);
+				$this->objeto->set("telefono", $telefono);
+				$this->objeto->set("persona_contacto", $contacto);
 				
-				$data=$this->con->listar();
+				$data=$this->objeto->listar();
 
 				while ($array = $data->fetch(\PDO::FETCH_ASSOC))
 				{
-					if ($array['nombre']==$this->con->get("nombre"))
+					if ($array['nombre']==$this->objeto->get("nombre"))
 					{
 						$errorRegistro='si';
 					}
@@ -81,7 +72,7 @@
 				}
 				else
 				{
-					$this->con->add();
+					$this->objeto->add();
 					header("Location: ".URL."proveedores/index/exito-registrar");
 				}
 			}
@@ -91,8 +82,8 @@
 		{
 			if (!$_POST)
 			{
-				$this->con->set("id",$id);
-				return $this->con->view();
+				$this->objeto->set("id",$id);
+				return $this->objeto->view();
 			}
 			else
 			{
@@ -126,18 +117,18 @@
 
 				$telefono=$codigo.'-'.$numero;
 
-				$this->con->set("id", $_POST['id']);
-				$this->con->set("nombre", $nombre);
-				$this->con->set("id_municipio", $_POST['municipio']);
-				$this->con->set("direccion", $direccion);
-				$this->con->set("telefono", $telefono);
-				$this->con->set("persona_contacto", $contacto);
+				$this->objeto->set("id", $_POST['id']);
+				$this->objeto->set("nombre", $nombre);
+				$this->objeto->set("id_municipio", $_POST['municipio']);
+				$this->objeto->set("direccion", $direccion);
+				$this->objeto->set("telefono", $telefono);
+				$this->objeto->set("persona_contacto", $contacto);
 				
-				$data=$this->con->listar();
+				$data=$this->objeto->listar();
 
 				while ($array = $data->fetch(\PDO::FETCH_ASSOC))
 				{
-					if ($array['nombre']==$this->con->get("nombre") && $array['id']!=$_POST['id'])
+					if ($array['nombre']==$this->objeto->get("nombre") && $array['id']!=$_POST['id'])
 					{
 						$errorRegistro='si';
 					}
@@ -149,7 +140,7 @@
 				}
 				else
 				{
-					$this->con->edit();
+					$this->objeto->edit();
 					header("Location: ".URL."proveedores/index/exito-modificar");
 				}
 			}
@@ -157,14 +148,14 @@
 
 		public function ver($id)
 		{
-			$this->con->set("id", $id);
-			return $this->con->view();
+			$this->objeto->set("id", $id);
+			return $this->objeto->view();
 		}
 
 		public function eliminar($id)
 		{
-			$this->con->set("id", $id);
-			$this->con->delete();
+			$this->objeto->set("id", $id);
+			$this->objeto->delete();
 
 			header("Location: ".URL."proveedores/index/exito-eliminar");
 		}
@@ -177,7 +168,7 @@
 
 			if ($parametro[0]=='estados')
 			{
-				$data=$this->con2->seleccionar("*","estados","estatus=1 ORDER BY nombre ASC");
+				$data=$this->objeto->con->seleccionar("*","estados","estatus=1 ORDER BY nombre ASC");
 
 				if ($data->rowCount()>0)
 				{
@@ -189,7 +180,7 @@
 			}
 			if (is_numeric($parametro[0]))
 			{
-				$data=$this->con2->seleccionar("*","municipios","estatus=1 AND id_estado=".$parametro[0]." ORDER BY nombre ASC");
+				$data=$this->objeto->con->seleccionar("*","municipios","estatus=1 AND id_estado=".$parametro[0]." ORDER BY nombre ASC");
 
 				if ($data->rowCount()>0)
 				{
@@ -201,7 +192,7 @@
 			}
 			if ($parametro[0]=='nombre')
 			{
-				$data=$this->con->listar();
+				$data=$this->objeto->listar();
 
 				if ($data->rowCount()>0)
 				{
@@ -228,12 +219,12 @@
 			}
 			if ($parametro[0]=='buscar-municipio-editar')
 			{
-				$sql=$this->con2->seleccionar("m.id_estado as estado", "proveedor p, municipios m",
+				$sql=$this->objeto->con->seleccionar("m.id_estado as estado", "proveedor p, municipios m",
 					"p.id_municipio=m.id AND p.estatus=1 AND m.estatus=1 AND p.id='".$parametro[1]."'");
 				
 				$result = $sql->fetch(\PDO::FETCH_ASSOC);
 				
-				$sql2=$this->con2->seleccionar("*","municipios","id_estado='".$result['estado']."'");
+				$sql2=$this->objeto->con->seleccionar("*","municipios","id_estado='".$result['estado']."'");
 				
 				while ($resultado = $sql2->fetch(\PDO::FETCH_ASSOC))
 				{
@@ -242,14 +233,14 @@
 			}
 			if ($parametro[0]=='editar')
 			{
-				$this->con->set("id", $parametro[1]);
-				$data=$this->con->view();
+				$this->objeto->set("id", $parametro[1]);
+				$data=$this->objeto->view();
 
 				if ($data->rowCount()>0)
 				{
 					while ($result = $data->fetch(\PDO::FETCH_ASSOC))
 					{
-						$sql=$this->con2->seleccionar("e.id as estado","estados e, municipios m, proveedor p","p.id_municipio=m.id AND e.id=m.id_estado AND e.estatus=1 AND m.estatus=1 AND p.estatus=1 AND p.id='".$parametro[1]."'");
+						$sql=$this->objeto->con->seleccionar("e.id as estado","estados e, municipios m, proveedor p","p.id_municipio=m.id AND e.id=m.id_estado AND e.estatus=1 AND m.estatus=1 AND p.estatus=1 AND p.id='".$parametro[1]."'");
 						$query = $sql->fetch(\PDO::FETCH_ASSOC);
 
 						$telf=explode('-', $result['telefono']);

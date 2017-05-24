@@ -1,35 +1,26 @@
 <?php 
 	namespace Controladores;
 	use Modelos\Paletas as Paletas;
-	use Modelos\Conexion as Conexion;
 
-	class paletasController
+	class paletasController extends controlador implements metodos
 	{
-		private $con;
-		private $con2;
-
+		private $objeto;
+	
 		public function __construct()
 		{
-			$this->con=new Paletas();
-			$this->con2=new Conexion();
-		}
-
-		public function Mayus($variable)
-		{
-			$variable = strtr(trim(strtoupper($variable)),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
-			return $variable;
+			$this->objeto=new Paletas();
 		}
 
 		public function index()
 		{
-			return $this->con->listar();
+			return $this->objeto->listar();
 		}
 
 		public function agregar()
 		{
 			if($_POST)
 			{
-				$resultado=$this->con->listar();
+				$resultado=$this->objeto->listar();
 
 				$nombre=$this->Mayus($_POST['nombre']);
 				$nombre=str_replace("  ", " ", $nombre);
@@ -39,10 +30,10 @@
 					$errorRegistro='si';
 				}
 
-				$this->con->set("nombre", $nombre);
-				$this->con->set("bulk", $_POST['bulk']);
-				$this->con->set("cantidad_bulks", $_POST['cantidad_bulks']);
-				$this->con->set("id_botella", $_POST['botella']);
+				$this->objeto->set("nombre", $nombre);
+				$this->objeto->set("bulk", $_POST['bulk']);
+				$this->objeto->set("cantidad_bulks", $_POST['cantidad_bulks']);
+				$this->objeto->set("id_botella", $_POST['botella']);
 				
 				while ($array=$resultado->fetch(\PDO::FETCH_ASSOC))
 				{
@@ -58,16 +49,16 @@
 				}
 				else
 				{
-					$this->con->add();
+					$this->objeto->add();
 				
 					$permitidos=array("image/jpeg","image/png","image/jpg");
 					$limite=700;
 					
 					if (in_array($_FILES['foto']["type"], $permitidos) && $_FILES["foto"]["size"]<=$limite*1024)
 					{
-						$this->con->set("nombre", $nombre);
+						$this->objeto->set("nombre", $nombre);
 
-						$datos=$this->con->listarImagen();
+						$datos=$this->objeto->listarImagen();
 
 						if ($array=$datos->fetch(\PDO::FETCH_ASSOC))
 						{
@@ -76,13 +67,13 @@
 
 							$nombre=$nom[0].".".$nom[1];
 
-							$this->con->set("id", $array["id"]);
-							$this->con->set("foto", $nombre);
+							$this->objeto->set("id", $array["id"]);
+							$this->objeto->set("foto", $nombre);
 
 							$ruta="Vistas".DS."template".DS."imagenes".DS."paletas".DS.$nombre;
 							move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta);
 
-							$this->con->subirImagen();
+							$this->objeto->subirImagen();
 
 							header("Location: ".URL."paletas/index/exito-registrar");
 						}
@@ -99,12 +90,12 @@
 		{
 			if (!$_POST)
 			{
-				$this->con->set("id",$id);
-				return $datos=$this->con->view();
+				$this->objeto->set("id",$id);
+				return $datos=$this->objeto->view();
 			}
 			else
 			{
-				$resultado=$this->con->listar();
+				$resultado=$this->objeto->listar();
 
 				$nombre=$this->Mayus($_POST['nombre']);
 				$nombre=str_replace("  ", " ", $nombre);
@@ -114,11 +105,11 @@
 					$errorRegistro='si';
 				}
 
-				$this->con->set("id", $_POST['id']);
-				$this->con->set("nombre", $nombre);
-				$this->con->set("bulk", $_POST['bulk']);
-				$this->con->set("cantidad_bulks", $_POST['cantidad_bulks']);
-				$this->con->set("id_botella", $_POST['botella']);
+				$this->objeto->set("id", $_POST['id']);
+				$this->objeto->set("nombre", $nombre);
+				$this->objeto->set("bulk", $_POST['bulk']);
+				$this->objeto->set("cantidad_bulks", $_POST['cantidad_bulks']);
+				$this->objeto->set("id_botella", $_POST['botella']);
 
 				while ($array=$resultado->fetch(\PDO::FETCH_ASSOC))
 				{
@@ -134,16 +125,16 @@
 				}
 				else
 				{
-					$this->con->edit();
+					$this->objeto->edit();
 				
 					$permitidos=array("image/jpeg","image/png","image/jpg");
 					$limite=700;
 					
 					if (in_array($_FILES['foto']["type"], $permitidos) && $_FILES["foto"]["size"]<=$limite*1024)
 					{
-						$this->con->set("nombre", $nombre);
+						$this->objeto->set("nombre", $nombre);
 
-						$datos=$this->con->listarImagen();
+						$datos=$this->objeto->listarImagen();
 
 						if ($array=$datos->fetch(\PDO::FETCH_ASSOC))
 						{
@@ -152,13 +143,13 @@
 
 							$nombre=$nom[0].".".$nom[1];
 
-							$this->con->set("id", $array["id"]);
-							$this->con->set("foto", $nombre);
+							$this->objeto->set("id", $array["id"]);
+							$this->objeto->set("foto", $nombre);
 
 							$ruta="Vistas".DS."template".DS."imagenes".DS."paletas".DS.$nombre;
 							move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta);
 
-							$this->con->subirImagen();
+							$this->objeto->subirImagen();
 
 							header("Location: ".URL."paletas/index/exito-modificar");
 						}
@@ -173,14 +164,14 @@
 
 		public function ver($id)
 		{
-			$this->con->set("id", $id);
-			return $datos=$this->con->view();
+			$this->objeto->set("id", $id);
+			return $datos=$this->objeto->view();
 		}
 
 		public function eliminar($id)
 		{
-			$this->con->set("id", $id);
-			$this->con->delete();
+			$this->objeto->set("id", $id);
+			$this->objeto->delete();
 
 			header("Location: ".URL."paletas/index/exito-eliminar");
 		}
@@ -191,7 +182,7 @@
 
 			$parametro=explode('_', $parametro);
 
-			$consulta=$this->con->listar();
+			$consulta=$this->objeto->listar();
 
 			if ($parametro[0]=='nombre')
 			{
@@ -218,7 +209,7 @@
 
 			if ($parametro[0]=='botellas')
 			{
-				$data=$this->con2->seleccionar("id, nombre", "botellas", "estatus=1 ORDER BY nombre ASC");
+				$data=$this->objeto->con->seleccionar("id, nombre", "botellas", "estatus=1 ORDER BY nombre ASC");
 
 				while ($result = $data->fetch(\PDO::FETCH_ASSOC))
 				{
@@ -228,8 +219,8 @@
 
 			if ($parametro[0]=='editar')
 			{
-				$this->con->set("id",$parametro[1]);
-				$consulta=$this->con->view();
+				$this->objeto->set("id",$parametro[1]);
+				$consulta=$this->objeto->view();
 
 				while ($result = $consulta->fetch(\PDO::FETCH_ASSOC))
 				{

@@ -3,7 +3,7 @@
 
 	abstract class Modelos
 	{
-		protected $con;
+		public $con;
 		
 		public function __construct()
 		{
