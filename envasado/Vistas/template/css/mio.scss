@@ -92,6 +92,19 @@ canvas
   margin-left: 0%;
   margin-right: 0.1%;
   margin-bottom: 1%;
+
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    font-size: 1.4em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-M)
+  {
+    font-size: 1.4em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-S)
+  {
+    font-size: 1.3em;
+  }
 }
 
 .numeros
@@ -725,11 +738,19 @@ thead
   }
   @media screen and (max-width: $pantalla-Tablet)
   {
-    font-size: 0.6em;
+    font-size: 1.3em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    font-size: 1.1em;
   }
   @media screen and (max-width: $pantalla-Mobile-M)
   {
-    font-size: 0.54em;
+    font-size: 1.1em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-S)
+  {
+    font-size: 1em;
   }
 }
 
@@ -745,15 +766,23 @@ tbody
   }
   @media screen and (max-width: $pantalla-Laptop)
   {
-    font-size: 0.6em;
+    font-size: 1em;
   }
   @media screen and (max-width: $pantalla-Tablet)
   {
-    font-size: 0.54em;
+    font-size: 1.2em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    font-size: 1.1em;
   }
   @media screen and (max-width: $pantalla-Mobile-M)
   {
-    font-size: 0.54em;
+    font-size: 1.1em;
+  }
+  @media screen and (max-width: $pantalla-Mobile-S)
+  {
+    font-size: 1em;
   }
 }
 

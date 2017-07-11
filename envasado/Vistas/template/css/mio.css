@@ -53,6 +53,15 @@ canvas {
   margin-left: 0%;
   margin-right: 0.1%;
   margin-bottom: 1%; }
+  @media screen and (max-width: 425px) {
+    .datosBarra {
+      font-size: 1.4em; } }
+  @media screen and (max-width: 375px) {
+    .datosBarra {
+      font-size: 1.4em; } }
+  @media screen and (max-width: 320px) {
+    .datosBarra {
+      font-size: 1.3em; } }
 
 .numeros {
   color: blue; }
@@ -448,10 +457,16 @@ body {
     font-size: 0.8em; } }
 @media screen and (max-width: 768px) {
   thead {
-    font-size: 0.6em; } }
+    font-size: 1.3em; } }
+@media screen and (max-width: 425px) {
+  thead {
+    font-size: 1.1em; } }
 @media screen and (max-width: 375px) {
   thead {
-    font-size: 0.54em; } }
+    font-size: 1.1em; } }
+@media screen and (max-width: 320px) {
+  thead {
+    font-size: 1em; } }
 
 @media screen and (max-width: 2560px) {
   tbody {
@@ -461,13 +476,19 @@ body {
     font-size: 0.9em; } }
 @media screen and (max-width: 1024px) {
   tbody {
-    font-size: 0.6em; } }
+    font-size: 1em; } }
 @media screen and (max-width: 768px) {
   tbody {
-    font-size: 0.54em; } }
+    font-size: 1.2em; } }
+@media screen and (max-width: 425px) {
+  tbody {
+    font-size: 1.1em; } }
 @media screen and (max-width: 375px) {
   tbody {
-    font-size: 0.54em; } }
+    font-size: 1.1em; } }
+@media screen and (max-width: 320px) {
+  tbody {
+    font-size: 1em; } }
 
 @media screen and (max-width: 2560px) {
   .btn {
