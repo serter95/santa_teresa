@@ -1,4 +1,4 @@
-@media screen and (max-width: 2522px)
+@media screen and (min-width: 2522px)
 {
 	.carousel-inner
 	{
@@ -51,6 +51,32 @@
 	{
 		font-size: 2em;
 		padding-bottom: 5%;
+	}
+
+	.modal-title
+	{
+		font-size: 2em;
+	}
+
+	.form-signin-heading
+	{
+		font-size: 4em;
+	}
+
+	.form-control
+	{
+		font-size: 2em;
+	    margin-top: 1%;
+	}
+
+	.modal-dialog
+	{
+		width: 50%;
+	}
+
+	.btn-primary
+	{
+		font-size: 2em;
 	}
 }
 

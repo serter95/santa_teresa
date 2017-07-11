@@ -4,12 +4,12 @@
 
 	class barraDerecha
 	{
-		private $barraDerecha;
+		private static $barraDerecha;
 
-		public function __construct()
+		public static function index()
 		{
-			$this->barraDerecha=new Produccion();
-			$datos=$this->barraDerecha->listar();
+			self::$barraDerecha=new Produccion();
+			$datos=self::$barraDerecha->listar();
 ?>
 	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 columDerecha" ng-controller="barraDerecha">
 

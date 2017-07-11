@@ -3,7 +3,7 @@
 
 	class Validar
 	{
-		public function __construct()
+		public static function index()
 		{
 			session_start();
 
@@ -11,7 +11,7 @@
 			{
 				session_unset();
 				session_destroy();
-				header('Location:http://localhost/santa_teresa');
+				header('Location:'.URL_VALIDAR);
 			}
 		}
 	}

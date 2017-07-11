@@ -1,7 +1,7 @@
 <?php 
 	namespace Modelos;
 
-	class Personal
+	class Personal extends Modelos implements Interfaz
 	{
 		private $id;
 		private $numeroPersonal;
@@ -13,12 +13,6 @@
 		private $estado;
 		private $jornada;
 		private $foto;
-		private $con;
-
-		public function __construct()
-		{
-			$this->con = new Conexion();
-		}
 
 		public function set($atributo, $valor)
 		{

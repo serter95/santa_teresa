@@ -4,7 +4,7 @@
 	class footer
 	{
 		
-		public function __construct()
+		public static function index()
 		{
 ?>
 <footer class="footer">

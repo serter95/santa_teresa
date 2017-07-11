@@ -103,7 +103,7 @@
            <form class="form-signin" action="" method="post">
             <h2 class="form-signin-heading">Por Favor Ingrese al Sistema</h2>
             <label for="inputNombre" class="sr-only">Nombre de Usuario</label>
-            <input type="text" id="inputNombre" name="usuario" class="form-control" placeholder="Ingrese su nombre de Usuario" autofocus required>
+            <input type="text" id="inputNombre" name="usuario" class="form-control" placeholder="Ingrese su nombre de Usuario" autofocus="true" required>
             <label for="inputPassword" class="sr-only">Contraseña</label>
             <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Ingrese su Contraseña" required>
             <div class="checkbox">
@@ -147,14 +147,17 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
     <?php
-      require_once 'envasado/Modelos/Conexion.php';
-      require_once 'envasado/Modelos/Login.php';
 
       if($_POST)
       {
-          $obj = new Modelos\Login();
+          require_once 'envasado/Modelos/Conexion.php';
+          require_once 'envasado/Modelos/Modelos.php';
+          require_once 'envasado/Modelos/Login.php';
+          require_once 'envasado/Controladores/loginController.php';
+          
+          $obj = new Controladores\loginController();
 
-          if ($obj->resultado!='BUENO')
+          if (!$obj->index())
           {
     ?>
           <script type="text/javascript">

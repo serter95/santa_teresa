@@ -3,7 +3,7 @@
 
 	class modales
 	{
-		function __construct($url)
+		public static function index($url)
 		{
 			$titulo="Monitoreo del Proceso de Envasado";
 			$aceptar="Aceptar";

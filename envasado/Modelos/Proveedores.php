@@ -1,7 +1,7 @@
 <?php 
 	namespace Modelos;
 
-	class Proveedores
+	class Proveedores extends Modelos implements Interfaz
 	{
 		private $id;
 		private $nombre;
@@ -9,12 +9,6 @@
 		private $direccion;
 		private $telefono;
 		private $persona_contacto;
-		private $con;
-
-		public function __construct()
-		{
-			$this->con = new Conexion();
-		}
 
 		public function set($atributo, $valor)
 		{

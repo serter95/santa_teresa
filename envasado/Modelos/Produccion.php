@@ -1,15 +1,8 @@
 <?php 
 	namespace Modelos;
 	
-	class Produccion
+	class Produccion extends Modelos
 	{
-		private $con;
-
-		public function __construct()
-		{
-			$this->con=new Conexion();
-		}
-
 		public function listar()
 		{
 			return $this->con->seleccionar("*", "lineas", "estatus=1");
@@ -17,7 +10,7 @@
 
 		public function ver($id_linea)
 		{
-			return $this->con->seleccionar("p.id as id_produccion, p.id_linea, p.fecha_hora_inicio, p.fecha_hora_fin, b.nombre", "produccion p, botellas b", "p.id_linea='$id_linea' AND p.estatus=1 AND b.id=p.id_botella");
+			return $this->con->seleccionar("p.id as id_produccion, p.id_linea, p.fecha_hora_inicio, p.fecha_hora_fin, b.nombre, l.nombre as nombre_linea", "produccion p, botellas b, lineas l", "l.id=p.id_linea AND p.id_linea='$id_linea' AND p.estatus=1 AND b.id=p.id_botella");
 		}
 
 		public function detalle($id)

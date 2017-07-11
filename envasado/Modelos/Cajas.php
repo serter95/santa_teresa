@@ -1,7 +1,7 @@
 <?php 
 	namespace Modelos;
 
-	class Cajas
+	class Cajas extends Modelos implements Interfaz
 	{
 		private $id;
 		private $nombre;
@@ -9,12 +9,6 @@
 		private $cantidad_botellas;
 		private $foto;
 		private $id_proveedor;
-		private $con;
-		
-		function __construct()
-		{
-			$this->con = new Conexion();
-		}
 
 		public function set($atributo, $valor)
 		{

@@ -1,7 +1,7 @@
 <?php 
 	namespace Modelos;
 
-	class Usuarios
+	class Usuarios extends Modelos implements Interfaz
 	{
 		private $id;
 		private $nombre;
@@ -12,12 +12,6 @@
 		private $resolucion;
 		private $id_personal;
 		private $id_privilegio;
-		private $con;
-
-		public function __construct()
-		{
-			$this->con = new Conexion();
-		}
 
 		public function set($atributo, $valor)
 		{

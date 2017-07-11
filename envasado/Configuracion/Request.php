@@ -14,7 +14,6 @@
 
 			if (isset($_GET['url']))
 			{
-
 				$ruta=filter_input(INPUT_GET, 'url');
 				$ruta=explode("/", $ruta);
 				$ruta=array_filter($ruta);

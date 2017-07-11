@@ -1,14 +1,14 @@
 <?php 
 	namespace Controladores;
-	use Modelos\Tapas as Tapas;
+	use Modelos\Paletas as Paletas;
 
-	class tapasController extends controlador implements metodos
+	class paletasController extends controlador implements metodos
 	{
 		private $objeto;
-
+	
 		public function __construct()
 		{
-			$this->objeto=new Tapas();
+			$this->objeto=new Paletas();
 		}
 
 		public function index()
@@ -25,22 +25,15 @@
 				$nombre=$this->Mayus($_POST['nombre']);
 				$nombre=str_replace("  ", " ", $nombre);
 
-				$medida=$this->Mayus($_POST['medida']);
-				$medida=str_replace("  ", " ", $medida);
-
 				if(!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ 0-9]{5,}/", $nombre))
 				{
 					$errorRegistro='si';
 				}
 
-				if(!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ 0-9]{5,}/", $medida))
-				{
-					$errorRegistro='si';
-				}
-
 				$this->objeto->set("nombre", $nombre);
-				$this->objeto->set("medida", $medida);
-				$this->objeto->set("id_proveedor", $_POST['proveedor']);
+				$this->objeto->set("bulk", $_POST['bulk']);
+				$this->objeto->set("cantidad_bulks", $_POST['cantidad_bulks']);
+				$this->objeto->set("id_botella", $_POST['botella']);
 				
 				while ($array=$resultado->fetch(\PDO::FETCH_ASSOC))
 				{
@@ -52,7 +45,7 @@
 			
 				if ($errorRegistro=='si')
 				{
-					header("Location: ".URL."tapas/index/error-registrar");
+					header("Location: ".URL."paletas/index/error-registrar");
 				}
 				else
 				{
@@ -77,17 +70,17 @@
 							$this->objeto->set("id", $array["id"]);
 							$this->objeto->set("foto", $nombre);
 
-							$ruta="Vistas".DS."template".DS."imagenes".DS."tapas".DS.$nombre;
+							$ruta="Vistas".DS."template".DS."imagenes".DS."paletas".DS.$nombre;
 							move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta);
 
 							$this->objeto->subirImagen();
 
-							header("Location: ".URL."tapas/index/exito-registrar");
+							header("Location: ".URL."paletas/index/exito-registrar");
 						}
 					}
 					else
 					{
-						header("Location: ".URL."tapas/index/exito-registrar");
+						header("Location: ".URL."paletas/index/exito-registrar");
 					}
 				}
 			}
@@ -107,24 +100,16 @@
 				$nombre=$this->Mayus($_POST['nombre']);
 				$nombre=str_replace("  ", " ", $nombre);
 
-				$medida=$this->Mayus($_POST['medida']);
-				$medida=str_replace("  ", " ", $medida);
-
 				if(!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ 0-9]{5,}/", $nombre))
-				{
-					$errorRegistro='si';
-				}
-
-				if(!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ 0-9]{5,}/", $medida))
 				{
 					$errorRegistro='si';
 				}
 
 				$this->objeto->set("id", $_POST['id']);
 				$this->objeto->set("nombre", $nombre);
-				$this->objeto->set("medida", $medida);
-				$this->objeto->set("id_proveedor", $_POST['proveedor']);
-				
+				$this->objeto->set("bulk", $_POST['bulk']);
+				$this->objeto->set("cantidad_bulks", $_POST['cantidad_bulks']);
+				$this->objeto->set("id_botella", $_POST['botella']);
 
 				while ($array=$resultado->fetch(\PDO::FETCH_ASSOC))
 				{
@@ -136,7 +121,7 @@
 
 				if ($errorRegistro=='si')
 				{
-					header("Location: ".URL."tapas/index/error-modificar");
+					header("Location: ".URL."paletas/index/error-modificar");
 				}
 				else
 				{
@@ -161,17 +146,17 @@
 							$this->objeto->set("id", $array["id"]);
 							$this->objeto->set("foto", $nombre);
 
-							$ruta="Vistas".DS."template".DS."imagenes".DS."tapas".DS.$nombre;
+							$ruta="Vistas".DS."template".DS."imagenes".DS."paletas".DS.$nombre;
 							move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta);
 
 							$this->objeto->subirImagen();
 
-							header("Location: ".URL."tapas/index/exito-modificar");
+							header("Location: ".URL."paletas/index/exito-modificar");
 						}
 					}
 					else
 					{
-						header("Location: ".URL."tapas/index/exito-modificar");
+						header("Location: ".URL."paletas/index/exito-modificar");
 					}
 				}
 			}
@@ -188,7 +173,7 @@
 			$this->objeto->set("id", $id);
 			$this->objeto->delete();
 
-			header("Location: ".URL."tapas/index/exito-eliminar");
+			header("Location: ".URL."paletas/index/exito-eliminar");
 		}
 
 		public function angular($parametro)
@@ -222,9 +207,9 @@
 			    }
 			}
 
-			if ($parametro[0]=='proveedores')
+			if ($parametro[0]=='botellas')
 			{
-				$data=$this->objeto->con->seleccionar("id, nombre", "proveedor", "estatus=1 ORDER BY nombre ASC");
+				$data=$this->objeto->con->seleccionar("id, nombre", "botellas", "estatus=1 ORDER BY nombre ASC");
 
 				while ($result = $data->fetch(\PDO::FETCH_ASSOC))
 				{
@@ -241,8 +226,9 @@
 				{
 					$array=array(
 						"nombre"=>$result['nombre'],
-						"medida"=>$result['medida'],
-						"proveedor"=>$result['id_proveedor'],
+						"bulk"=>$result['bulk'],
+						"cantidad_bulks"=>$result['cantidad_bulks'],
+						"botella"=>$result['id_botella'],
 						);
 			    }
 			}
