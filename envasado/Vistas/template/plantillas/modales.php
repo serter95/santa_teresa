@@ -93,11 +93,10 @@
 				    </div>
 				    <div class="modal-body">
 				    	<div id="container" style="width: 100%;">
-					        <canvas id="canvas"></canvas>
+					        <div id="gaugeSpeedometer" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
 					    </div>
-
 				    	<center>
-				       		<button class="btn btn-danger" data-dismiss="modal"><?php echo $cancelar ?></button>
+				       		<button class="btn btn-primary" data-dismiss="modal"><?php echo $aceptar ?></button>
 				       </center>
 				    </div>
 				  </div>

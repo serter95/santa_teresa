@@ -1,6 +1,6 @@
 <?php
 	namespace Controladores;
-	
+
 	abstract class controlador
 	{
 		protected function Mayus($variable)
