@@ -14,41 +14,28 @@ $color-gris:#b3bdbd;
 $color-verde:#419641;
 $color-rojo: #c12e2a;
 
-canvas
-{
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-.titulo
-{
+.titulo{
   text-align: center;
 }
 
-.informacion
-{
+.informacion{
   text-align: right;
 }
 
-.boton-informacion
-{
+.boton-informacion{
   display: inline-block;
 }
 
-.imagen-avatar
-{
+.imagen-avatar{
   width: 50px;
   height: 50px;
 }
 
-.container .text-muted
-{
+.container .text-muted{
   margin: 0.8% 0;
 }
 
-.footer > .container
-{
+.footer > .container{
   padding-right: 15px;
   padding-left: 15px;
   margin-left: 1%;
@@ -229,8 +216,6 @@ textarea
   resize: none;
 }
 
-//
-//
 // @MEDIA SCREEN AND (max-width: $VARIABLE)
 //
 // Acomodar el dropdown para que se vea en telefonos o cambiar por un Popover
@@ -939,13 +924,11 @@ tbody
   #codigo
   {
     width: 92%;
-    @media screen and (max-width: $pantalla-Mobile-L)
-    {
+    @media screen and (max-width: $pantalla-Mobile-L) {
       width: 90%;
     }
 
-    @media screen and (max-width: $pantalla-Mobile-S)
-    {
+    @media screen and (max-width: $pantalla-Mobile-S) {
       width: 88%;
     }
   }
