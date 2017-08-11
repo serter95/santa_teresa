@@ -1,5 +1,17 @@
 <?php
-	ob_start();
+	//ob_start();
+
+	if($_POST) {
+			require_once ('envasado/Modelos/Conexion.php');
+			require_once ('envasado/Modelos/Modelos.php');
+			require_once ('envasado/Modelos/Login.php');
+			require_once ('envasado/Controladores/loginController.php');
+
+			$obj = new Controladores\loginController();
+			$retorno=$obj->index();
+	} else {
+		$retorno=true;
+	}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,9 +41,9 @@
     <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #000; border-color: #000;">
       <div class="container">
         <div class="navbar-header">
-          
+
           <img id="imgHeader2" src="imagenes/urbicor.jpg">
-          
+
 
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -42,10 +54,10 @@
           <a class="navbar-brand" href="#"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" style="">
-          
+
           <div id="cabecera">
               <img id="imgHeader" src="imagenes/urbicor.jpg">
-        
+
               <div id="titulo" style="color: #fff;">Monitoreo del Proceso de Envasado</div>
           </div>
 
@@ -56,7 +68,7 @@
               Iniciar Sesión
             </button>
           </ul>
-        
+
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -145,35 +157,23 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<?php
+		if ($retorno==false)
+		{
+?>
+		<script type="text/javascript">
 
-    <?php
+			$('#errorSms').modal({
+					show:true,
+					backdrop:'static'
+			});
 
-      if($_POST)
-      {
-          require_once 'envasado/Modelos/Conexion.php';
-          require_once 'envasado/Modelos/Modelos.php';
-          require_once 'envasado/Modelos/Login.php';
-          require_once 'envasado/Controladores/loginController.php';
-          
-          $obj = new Controladores\loginController();
-
-          if (!$obj->index())
-          {
-    ?>
-          <script type="text/javascript">
-            
-            $('#errorSms').modal({
-                show:true,
-                backdrop:'static'
-            });
-          
-          </script>
-    <?php
-          }
-      }
-    ?>
+		</script>
+<?php
+		}
+?>
   </body>
 </html>
 <?php
-  ob_end_flush();
+  //ob_end_flush();
 ?>

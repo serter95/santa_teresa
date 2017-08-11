@@ -6,6 +6,7 @@ $pantalla-Tablet:768px;
 $pantalla-Mobile-L:425px;
 $pantalla-Mobile-M:375px;
 $pantalla-Mobile-S:320px;
+
 // FIN DE LAS VARIABLES DE -> @MEDIA SCREEN AND (max-width: $VARIABLE)
 $color-negro:#000;
 $color-azul:#10528a;
@@ -13,41 +14,28 @@ $color-gris:#b3bdbd;
 $color-verde:#419641;
 $color-rojo: #c12e2a;
 
-canvas
-{
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-.titulo
-{
+.titulo{
   text-align: center;
 }
 
-.informacion
-{
+.informacion{
   text-align: right;
 }
 
-.boton-informacion
-{
+.boton-informacion{
   display: inline-block;
 }
 
-.imagen-avatar
-{
+.imagen-avatar{
   width: 50px;
   height: 50px;
 }
 
-.container .text-muted
-{
+.container .text-muted{
   margin: 0.8% 0;
 }
 
-.footer > .container
-{
+.footer > .container{
   padding-right: 15px;
   padding-left: 15px;
   margin-left: 1%;
@@ -59,7 +47,7 @@ canvas
   color: #fff;
 }
 
-.navbar-inverse .navbar-nav>li>a 
+.navbar-inverse .navbar-nav>li>a
 {
 	color: #fff;
   //margin-top: 1.5em;
@@ -77,7 +65,7 @@ canvas
   padding-top: 0px;
   padding-bottom: 0px;
   padding-left: 0.1%;
-  padding-right: 0%; 
+  padding-right: 0%;
   /*background-color: #eee;
   background-color: rgba(86,61,124,.15);
   border: 1px solid #ddd;
@@ -228,8 +216,6 @@ textarea
   resize: none;
 }
 
-//
-//
 // @MEDIA SCREEN AND (max-width: $VARIABLE)
 //
 // Acomodar el dropdown para que se vea en telefonos o cambiar por un Popover
@@ -247,7 +233,7 @@ body
   {
     font-size: 1.5em;
   }
-  
+
   @media screen and (max-width: $pantalla-Laptop)
   {
     font-size: 1.1em;
@@ -325,7 +311,7 @@ body
     margin-left: 0%;
     font-size: 1em;
   }
-  
+
   @media screen and (max-width: $pantalla-Tablet)
   {
     margin-top: 2%;
@@ -536,7 +522,7 @@ body
   @media screen and (max-width: $pantalla-4K)
   {
     //background: red;
-  } 
+  }
 }
 
 .columDerecha
@@ -703,7 +689,7 @@ body
 
 .dataTables_empty
 {
-  color: red; 
+  color: red;
   @media screen and (max-width: $pantalla-4K)
   {
     font-size: 2em;
@@ -938,13 +924,11 @@ tbody
   #codigo
   {
     width: 92%;
-    @media screen and (max-width: $pantalla-Mobile-L)
-    {
+    @media screen and (max-width: $pantalla-Mobile-L) {
       width: 90%;
     }
 
-    @media screen and (max-width: $pantalla-Mobile-S)
-    {
+    @media screen and (max-width: $pantalla-Mobile-S) {
       width: 88%;
     }
   }

@@ -1,2 +1,2 @@
 # Santa Teresa
-Control, Gestion y Monitoreo del Envasado del Ron
+Control, Gestión y Monitoreo del Envasado del Ron

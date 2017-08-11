@@ -1,6 +1,6 @@
-<?php 
+<?php
 	namespace Modelos;
-	
+
 	class Produccion extends Modelos
 	{
 		public function listar()
@@ -17,23 +17,18 @@
 		{
 			$produccion=$this->con->seleccionar("p.id, p.id_linea, p.fecha_hora_inicio, p.fecha_hora_fin, p.cantidad_paletas, p.id_botella, p.id_caja, p.id_etiqueta, p.id_tapa, l.nombre as nombre_linea, pe.cedula, pe.nombres, pe.apellidos, pe.jornada, pa.nombre as nombre_paleta, pa.bulk, pa.cantidad_bulks", "produccion p, lineas l, personal pe, paleta pa", "l.id=p.id_linea AND pe.id=p.supervisor AND pa.id_botella=p.id_botella AND p.estatus=1 AND l.estatus=1 AND pe.estatus=1 AND pa.estatus=1 AND p.id='$id' LIMIT 1");
 			$produccionTotal=$produccion->fetch(\PDO::FETCH_ASSOC);
-			
 
 			$botella=$this->con->seleccionar("b.nombre as nombre_botella, b.distribucion, m.tipo, p.nombre as nombre_proveedor","botellas b, medidas m, proveedor p","b.id_medida=m.id AND b.id_proveedor=p.id AND b.estatus=1 AND m.estatus=1 AND p.estatus=1 AND b.id='".$produccionTotal['id_botella']."' LIMIT 1");
 			$botella=$botella->fetch(\PDO::FETCH_ASSOC);
 
-
 			$caja=$this->con->seleccionar("c.nombre as nombre_caja, c.medida as medida_caja, c.cantidad_botellas, p.nombre as nombre_proveedor_caja","cajas c, proveedor p","c.id_proveedor=p.id AND c.estatus=1 AND p.estatus=1 AND c.id='".$produccionTotal['id_caja']."' LIMIT 1");
 			$caja=$caja->fetch(\PDO::FETCH_ASSOC);
-
 
 			$etiqueta=$this->con->seleccionar("e.nombre as nombre_etiqueta, e.medida as medida_etiqueta, p.nombre as nombre_proveedor_etiqueta","etiqueta e, proveedor p","e.id_proveedor=p.id AND e.estatus=1 AND p.estatus=1 AND e.id='".$produccionTotal['id_etiqueta']."' LIMIT 1");
 			$etiqueta=$etiqueta->fetch(\PDO::FETCH_ASSOC);
 
-
 			$tapa=$this->con->seleccionar("t.nombre as nombre_tapa, t.medida as medida_tapa, p.nombre as nombre_proveedor_tapa","tapas t, proveedor p","t.id_proveedor=p.id AND t.estatus=1 AND p.estatus=1 AND t.id='".$produccionTotal['id_tapa']."' LIMIT 1");
 			$tapa=$tapa->fetch(\PDO::FETCH_ASSOC);
-
 
 			$array=$this->contadores($produccionTotal['id']);
 
@@ -87,7 +82,7 @@
 
 		public function actualizarlinea($id, $id2)
 		{
-			if ($id2) 
+			if ($id2)
 			{
 				$this->con->actualizar("usuario","id_linea_seleccionada=$id2","id='$id'");
 			}
@@ -120,7 +115,6 @@
 			}
 
 			$paradas2=$this->con->seleccionar("e.nombre","parada_emergencia p, estacion e","p.id_estacion=e.id AND p.id_produccion='".$lineas['id']."' AND p.estatus=1 AND e.estatus=1 ORDER BY p.id DESC");
-
 			$nomParadas=$paradas2->fetch(\PDO::FETCH_ASSOC);
 
 			$contadores=$this->contadores($lineas['id']);
@@ -145,6 +139,48 @@
 				'botellasLlenas' => $contadores['botellas_llenas'],
 				'cajasVacias' => $contadores['cajas_vacias'],
 				'cajasLlenas' => $contadores['cajas_llenas'],
+			);
+		}
+
+		public function historial($parametros)
+		{
+			$exp=explode('-', $parametros);
+			$table=$exp[0].'_'.$exp[1];
+			if (is_numeric($exp[2])) {
+				$id=$exp[2];
+			}
+			if ($table=='botellas_llenas') {
+				$tabla='botellas_llenas';
+				$titulo="Botellas Llenas";
+			}
+			if ($table=='botellas_vacias') {
+				$tabla='botellas_vacias';
+				$titulo="Botellas Vacias";
+			}
+			if ($table=='cajas_llenas') {
+				$tabla='cajas_llenas';
+				$titulo="Cajas Llenas";
+			}
+			if ($table=='cajas_vacias') {
+				$tabla='cajas_vacias';
+				$titulo="Cajas Vacias";
+			}
+			if ($table=='camadas_usadas') {
+				$tabla='bulk_usados';
+				$titulo="Camadas Usadas";
+			}
+			if ($table=='paradas_emergencia') {
+				$titulo="Paradas de Emergencia";
+				$parada=1;
+				$consulta=$this->con->seleccionar("p.id, p.hora_fecha as fecha_hora, p.hora_fecha_reinicio, e.nombre","parada_emergencia p, estacion e","p.estatus=1 AND e.estatus=1 AND p.id_estacion=e.id AND p.id_produccion='$id'");
+			} else {
+				$consulta=$this->con->seleccionar("id, fecha_hora","$tabla","estatus=1 AND id_produccion='$id'");
+			}
+
+			return array(
+				'consulta' => $consulta,
+				'titulo' => $titulo,
+				'parada' => $parada,
 			);
 		}
 	}

@@ -12,7 +12,7 @@
 				{
 					echo "'".$datos['fecha_hora_fin']."' (Culminada)";
 				}
-			?>		
+			?>
 		</h3>
 	</div>
 	<div class="panel-body" ng-controller="informacionModal">
@@ -21,7 +21,42 @@
 
 			<a class="btn btn-info boton-informacion" ng-click="informacion('<?php echo URL;?>produccion/angular/<?php echo $datos['id'];?>_personal')">Personal <span class="glyphicon glyphicon-th-list"></span></a>
 		</div>
-		
+
+		<table class="table table-hover">
+			<h4><u>Contadores:</u></h4>
+			<thead>
+				<tr>
+					<th>Botellas llenas</th>
+					<th>Botellas Vacias</th>
+					<th>Cajas llenas</th>
+					<th>Cajas Vacias</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td><a href="<?php echo URL; ?>produccion/historial/botellas-llenas-<?php echo $datos['id']; ?>"><?php echo $datos[4]['botellas_llenas'];?></a></td>
+				<td><a href="<?php echo URL; ?>produccion/historial/botellas-vacias-<?php echo $datos['id']; ?>"><?php echo $datos[4]['botellas_vacias'];?></a></td>
+				<td><a href="<?php echo URL; ?>produccion/historial/cajas-llenas-<?php echo $datos['id']; ?>"><?php echo $datos[4]['cajas_llenas'];?></a></td>
+				<td><a href="<?php echo URL; ?>produccion/historial/cajas-vacias-<?php echo $datos['id']; ?>"><?php echo $datos[4]['cajas_vacias'];?></a></td>
+			</tr>
+			</tbody>
+
+			<thead>
+				<tr>
+					<th>Camadas Usadas</th>
+					<!--th>Cantidad de Paletas</th-->
+					<th>Paradas de Emergencia</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="<?php echo URL; ?>produccion/historial/camadas-usadas-<?php echo $datos['id']; ?>"><?php echo $datos[4]['bulks_usados'];?></a></td>
+					<!--td><?php //echo $datos['cantidad_paletas'];?></td-->
+					<td><a href="<?php echo URL; ?>produccion/historial/paradas-emergencia-<?php echo $datos['id']; ?>"><?php echo $datos[4]['parada_emergencia'];?></a></td>
+				</tr>
+			</tbody>
+		</table>
+
 		<table class="table table-hover">
 			<h4><u>Supervisor:</u></h4>
 			<thead>
@@ -133,41 +168,6 @@
 				<td><?php echo $datos[3]['medida_tapa'];?></td>
 				<td><?php echo $datos[3]['nombre_proveedor_tapa'];?></td>
 			</tr>
-			</tbody>
-		</table>
-
-		<table class="table table-hover">
-			<h4><u>Contadores:</u></h4>
-			<thead>
-				<tr>
-					<th>Botellas llenas</th>
-					<th>Botellas Vacias</th>
-					<th>Cajas llenas</th>
-					<th>Cajas Vacias</th>
-				</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td><?php echo $datos[4]['botellas_llenas'];?></td>
-				<td><?php echo $datos[4]['botellas_vacias'];?></td>
-				<td><?php echo $datos[4]['cajas_llenas'];?></td>
-				<td><?php echo $datos[4]['cajas_vacias'];?></td>
-			</tr>
-			</tbody>
-
-			<thead>
-				<tr>
-					<th>Camadas Usadas</th>
-					<!--th>Cantidad de Paletas</th-->
-					<th>Paradas de Emergencia</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><?php echo $datos[4]['bulks_usados'];?></td>
-					<!--td><?php //echo $datos['cantidad_paletas'];?></td-->
-					<td><?php echo $datos[4]['parada_emergencia'];?></td>
-				</tr>
 			</tbody>
 		</table>
 	</div>

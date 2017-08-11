@@ -1,4 +1,4 @@
-<?php 
+<?php
 	namespace Configuracion;
 
 	class Enrutador
@@ -6,13 +6,12 @@
 		public static function run(Request $request)
 		{
 			$controlador=$request->getControlador()."Controller";
-			
+
 			$ruta=ROOT."Controladores".DS.$controlador.".php";
-			
+
 			$metodo=$request->getMetodo();
 
-			if ($metodo=="index.php")
-			{
+			if ($metodo=="index.php"){
 				$metodo="index";
 			}
 

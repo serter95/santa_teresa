@@ -6,8 +6,8 @@ error_reporting(0);
 
 $aux=explode('/', $_SERVER['REQUEST_URI']);
 define('REQUEST_URI', $aux[4]);
-define("URL", "http://".$_SERVER['HTTP_HOST']."/santa_teresa/envasado/");
-define("URL_VALIDAR", "http://".$_SERVER['HTTP_HOST']."/santa_teresa/");
+define("URL", "http://{$_SERVER['HTTP_HOST']}/santa_teresa/envasado/");
+define("URL_VALIDAR", "http://{$_SERVER['HTTP_HOST']}/santa_teresa/");
 define("DS", DIRECTORY_SEPARATOR);
 define("ROOT", realpath(dirname(__FILE__)).DS);
 
@@ -71,8 +71,9 @@ class Template
 			<script src="<?php echo URL; ?>Vistas/template/js/bootstrap.min.js"></script>
 			<script src="<?php echo URL; ?>Vistas/template/js/dataTables.min.js"></script>
 			<script src="<?php echo URL; ?>Vistas/template/js/jquery.fancybox.js"></script>
-			<script src="<?php echo URL; ?>Vistas/template/js/Chart.bundle.min.js"></script>
-		    <script src="<?php echo URL; ?>Vistas/template/js/utils.js"></script>
+			<script src="<?php echo URL; ?>Vistas/template/js/highcharts.js"></script>
+			<script src="<?php echo URL; ?>Vistas/template/js/highcharts-more.js"></script>
+			<script src="<?php echo URL; ?>Vistas/template/js/modules/exporting.js"></script>
 			<script src="<?php echo URL; ?>Vistas/template/js/funciones.js"></script>
 <?php
 			Vistas\template\plantillas\modales::index($url);

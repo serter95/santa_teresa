@@ -36,14 +36,15 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 		});
 	}
 
-	$scope.DatabarraDerecha=function()
+	$scope.DatabarraDerecha=function(graficar)
 	{
 		var idLinea=$('#lineaParaEstadistica').val();
+    $('#resultadoDatabarraDerecha').val(0);
 		$http.post(URL+'produccion/angular/'+idLinea+'_barraderecha').success(function (data)
 		{
 			var res=data.split('<');
 			$scope.barraDerecha=JSON.parse(res[0]);
-			
+
 			if ($scope.barraDerecha.registrosConseguidos>0)
 			{
 				$scope.imagenActual=$scope.barraDerecha.imagen;
@@ -68,10 +69,10 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 					$scope.paradas='No';
 					$scope.estiloParada="";
 				}
-				
+
 				$scope.supervisor=$scope.barraDerecha.supervisor;
 				$scope.producto=$scope.barraDerecha.producto;
-				
+
 				if(!$scope.barraDerecha.fecha_hora_fin)
 				{
 					$scope.produccion=$scope.barraDerecha.fecha_hora_inicio+' En Proceso';
@@ -82,7 +83,7 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 					$scope.produccion=$scope.barraDerecha.fecha_hora_inicio+' Finalizada';
 					$scope.estiloProduccion={"color" : "green"};
 				}
-				
+
 				$scope.botellasEstimadas=$scope.barraDerecha.botellasEstimadas;
 				$scope.cajasEstimadas=$scope.barraDerecha.cajasEstimadas;
 				$scope.totalParadas=$scope.barraDerecha.paradas;
@@ -92,87 +93,154 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 				$scope.botellasLlenas=$scope.barraDerecha.botellasLlenas;
 				$scope.cajasVacias=$scope.barraDerecha.cajasVacias;
 				$scope.cajasLlenas=$scope.barraDerecha.cajasLlenas;
+        $scope.idProduccion=$scope.barraDerecha.idProduccion;
 				$scope.nulo="";
 
-				$scope.graficas=function()
-				{
-					$('#canvasModal').modal({
+				//$scope.graficas=function()
+				//{
+					/*$('#canvasModal').modal({
 				        show:true,
 				        backdrop:'static'
-				    });
+				  });*/
+          // fecha actual
+          var f = new Date();
+          var hours=f.getHours();
+          var minutes=f.getMinutes();
+          var seconds=f.getSeconds();
+          var horas=0;
+          var minutos=0;
+          var segundos=0;
 
-				    var color = Chart.helpers.color;
-			        var barChartData = {
-			            labels: ["Produccion de "+$scope.barraDerecha.fecha_hora_inicio+" "+$scope.barraDerecha.nombreLinea],
+          if (hours<10) {
+            horas="0"+f.getHours();
+          } else {
+            horas=f.getHours();
+          }
 
-			            datasets: [{
-			                label: 'Botellas Vacias',
-			                backgroundColor: color(window.chartColors.red).alpha(0.6).rgbString(),
-			                borderColor: window.chartColors.red,
-			                borderWidth: 1,
-			                data: [
-			                    $scope.barraDerecha.botellasVacias
-			                ]
-			            }, {
-			                label: 'Botellas Llenas',
-			                backgroundColor: color(window.chartColors.blue).alpha(0.6).rgbString(),
-			                borderColor: window.chartColors.blue,
-			                borderWidth: 1,
-			                data: [
-			                    $scope.barraDerecha.botellasLlenas
-			                ]
-			            }, {
-			                label: 'Cajas Vacias',
-			                backgroundColor: color(window.chartColors.yellow).alpha(0.6).rgbString(),
-			                borderColor: window.chartColors.yellow,
-			                borderWidth: 1,
-			                data: [
-			                    $scope.barraDerecha.cajasVacias
-			                ]
-			            }, {
-			                label: 'Cajas Llenas',
-			                backgroundColor: color(window.chartColors.green).alpha(0.6).rgbString(),
-			                borderColor: window.chartColors.green,
-			                borderWidth: 1,
-			                data: [
-			                    $scope.barraDerecha.cajasLlenas
-			                ]
-			            }, {
-			                label: 'Paradas de Emergencia',
-			                backgroundColor: color(window.chartColors.orange).alpha(0.6).rgbString(),
-			                borderColor: window.chartColors.orange,
-			                borderWidth: 1,
-			                data: [
-			                    $scope.barraDerecha.paradas
-			                ]
-			            }, {
-			                label: 'Camadas Usadas',
-			                backgroundColor: color(window.chartColors.purple).alpha(0.5).rgbString(),
-			                borderColor: window.chartColors.purple,
-			                borderWidth: 1,
-			                data: [
-			                    $scope.barraDerecha.totalCamadas
-			                ]
-			            }]
+          if (minutes<10) {
+            minutos="0"+f.getMinutes();
+          } else {
+            minutos=f.getMinutes();
+          }
 
-			        };
+          if (seconds<10) {
+            segundos="0"+f.getSeconds();
+          } else {
+            segundos=f.getSeconds();
+          }
 
-			        var ctx = document.getElementById("canvas").getContext("2d");
-			        window.myBar = new Chart(ctx, {
-			            type: 'bar',
-			            data: barChartData,
-			            options: {
-			                responsive: true,
-			                legend: {
-			                    position: 'top',
-			                },
-			                title: {
-			                    display: true,
-			                    text: "Produccion de "+$scope.barraDerecha.fecha_hora_inicio+" "+$scope.barraDerecha.nombreLinea
-			                }
-			            }
-			        });
-				}
+          $scope.fechaActual=horas+":"+minutos+":"+segundos;
+          // fin fecha actual
+        if (graficar==true) {
+          Highcharts.chart('gaugeSpeedometer', {
+            chart: {
+                type: 'gauge',
+                plotBackgroundColor: null,
+                plotBackgroundImage: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+            title: {
+                text: 'Reloj de Producción'
+            },
+            pane: {
+                startAngle: -150,
+                endAngle: 150,
+                background: [{
+                    backgroundColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                        stops: [
+                            [0, '#FFF'],
+                            [1, '#333']
+                        ]
+                    },
+                    borderWidth: 0,
+                    outerRadius: '109%'
+                }, {
+                    backgroundColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                        stops: [
+                            [0, '#333'],
+                            [1, '#FFF']
+                        ]
+                    },
+                    borderWidth: 1,
+                    outerRadius: '107%'
+                }, {
+                    // default background
+                }, {
+                    backgroundColor: '#DDD',
+                    borderWidth: 0,
+                    outerRadius: '105%',
+                    innerRadius: '103%'
+                }]
+            },
+            // the value axis
+            yAxis: {
+                min: 0,
+                max: 10000,
+
+                minorTickInterval: 'auto',
+                minorTickWidth: 1,
+                minorTickLength: 10,
+                minorTickPosition: 'inside',
+                minorTickColor: '#666',
+
+                tickPixelInterval: 30,
+                tickWidth: 2,
+                tickPosition: 'inside',
+                tickLength: 10,
+                tickColor: '#666',
+                labels: {
+                    distance:-20,
+                    step: 2,
+                    rotation: 'auto'
+                },
+                title: {
+                    text: $scope.fechaActual
+                },
+                plotBands: [{
+                    from: 0,
+                    to: 3333.33,
+                    color: '#DF5353' // red
+                }, {
+                    from: 3333.33,
+                    to: 6666.66,
+                    color: '#DDDF0D' // yellow
+                }, {
+                    from: 6666.66,
+                    to: 10000,
+                    color: '#55BF3B' // green
+                }]
+            },
+            series: [{
+                name: 'Cantidad',
+                data: [$scope.cajasLlenas],
+                tooltip: {
+                    valueSuffix: ' Cajas de Ron'
+                }
+            }]
+
+          } ,
+          // Add some life | ESTA FUNCION SE EJECUTA EN PARALELO CON EL SCRIPT
+          function (chart) {
+            if (!chart.renderer.forExport) { // necesario para funcionar
+              setInterval(function () { // actualizacion de la data
+                chart.yAxis[0].update({
+                  title:{
+                    text: $scope.fechaActual
+                  }
+                });
+                var point = chart.series[0].points[0]; // necesario
+                point.update($scope.cajasLlenas); // refresca valor data de series => series.data
+              }, 1000); // FIN actualizacion de la data
+            } // FIN necesario para funcionar
+          }
+          );
+        }
+				//}
+			  $('#gaugeSpeedometer').show();
+        $('#resultadoDatabarraDerecha').val(1);
 			}
 			else
 			{
@@ -195,6 +263,11 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 				$scope.cajasVacias='Nulo';
 				$scope.cajasLlenas='Nulo';
 				$scope.nulo={"color" : "#333"};
+        if (graficar==true) {
+          $('#gaugeSpeedometer').html('<img src="'+URL+'Vistas/template/imagenes/0.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">');
+        }
+        $('#relojGuage').val(0);
+        $('#resultadoDatabarraDerecha').val(1);
 			}
 		});
 	}
@@ -203,23 +276,30 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 	{
 		var res=data.split('<');
 		$scope.buscarLinea=JSON.parse(res[0]);
-		
+
 		if ($scope.buscarLinea.idLinea)
 		{
 			$scope.lineaParaEstadistica=$scope.buscarLinea.idLinea;
 		}
 	});
 
-	var promise=$interval( function()
-	{
-		$scope.DatabarraDerecha()
-	},
-	100);
+  $scope.bucleAjax=1;
+  var graficar=true;
+  var promise=$interval( function() {
+    if ($scope.bucleAjax==1) {
+      $scope.DatabarraDerecha(graficar);
+    }
+    graficar = false;
+    if ($('#relojGuage').val()==0) {
+      graficar = true;
+      $('#relojGuage').val(1);
+    }
+    $scope.bucleAjax = $('#resultadoDatabarraDerecha').val();
+  }, 100);
 
-	$scope.$on('$destroy', function()
-	{
-		$interval.cancel(promise);
-	});
+  $scope.$on('$destroy', function() {
+    $interval.cancel(promise);
+  });
 });
 
 miAplicacion.controller('validarPersonal', function ($scope,$http)
@@ -229,7 +309,7 @@ miAplicacion.controller('validarPersonal', function ($scope,$http)
 	$scope.departamentoTotal=["MANTENIMIENTO","ENVASADO"];
 
 	$scope.cargoTotal=["OPERADOR","OPERADOR INTEGRAL","OPERADOR AVANZADO","OPERADOR ENTRENANTE TEMPORAL","SUPERVISOR"];
-	
+
 	$scope.estadoTotal=["ACTIVO","REPOSO","VACACIONES","DESPEDIDO"];
 
 	$scope.jornadaTotal=["1","2","3"];
@@ -238,27 +318,27 @@ miAplicacion.controller('validarPersonal', function ($scope,$http)
 
 	if (modulo=='editar' || modulo=='ver')
 	{
-		var id=document.getElementById('id').value; 
+		var id=document.getElementById('id').value;
 		var numeroPersonal=document.getElementById('numeroPersonal2').value;
-		var nacionalidad=document.getElementById('nacionalidad2').value; 
+		var nacionalidad=document.getElementById('nacionalidad2').value;
 		var cedula=document.getElementById('cedula2').value;
-		var nombres=document.getElementById('nombres2').value; 
+		var nombres=document.getElementById('nombres2').value;
 		var apellidos=document.getElementById('apellidos2').value;
-		var departamento=document.getElementById('departamento2').value; 
+		var departamento=document.getElementById('departamento2').value;
 		var cargo=document.getElementById('cargo2').value;
-		var estado=document.getElementById('estado2').value; 
-		var jornada=document.getElementById('jornada2').value;			
+		var estado=document.getElementById('estado2').value;
+		var jornada=document.getElementById('jornada2').value;
 
 		$scope.edit=
 		[
-			{id: id, numeroPersonal: numeroPersonal, nacionalidad: nacionalidad, cedula: cedula, 
-				nombres: nombres, apellidos: apellidos, departamento: departamento, cargo: cargo, 
+			{id: id, numeroPersonal: numeroPersonal, nacionalidad: nacionalidad, cedula: cedula,
+				nombres: nombres, apellidos: apellidos, departamento: departamento, cargo: cargo,
 				estado:estado, jornada: jornada}
 		];
 	}
 
 	$scope.validarBD=function(accion, campo, form)
-	{	
+	{
 		if (accion=="agregar")
 		{
 			if (campo=='numero_personal')
@@ -307,7 +387,6 @@ miAplicacion.controller('validarPersonal', function ($scope,$http)
 
 		$http.post(URL+'personal/angular/'+valorCampo+'.'+campo+'.'+accion).success(function (data)
 		{
-			console.log(data);
 			if (accion=="agregar")
 			{
 				if (campo=='numero_personal')
@@ -392,7 +471,6 @@ miAplicacion.controller('validarProveedores', function ($scope,$http)
 
 		$http.post(URL+'proveedores/angular/buscar-municipio-editar_'+id).success(function (data)
 		{
-			//alert(data);
 			var res=data.split('<');
 			$scope.municipios=JSON.parse(res[0]);
 		});
@@ -401,7 +479,6 @@ miAplicacion.controller('validarProveedores', function ($scope,$http)
 		{
 			var res=data.split('<');
 			$scope.editProveedor=JSON.parse("["+res[0]+"]");
-			console.log($scope.editProveedor);
 		});
 	}
 
@@ -429,7 +506,7 @@ miAplicacion.controller('validarProveedores', function ($scope,$http)
 	$scope.validarNombreProveedor=function ()
 	{
 		var nombre=document.getElementById('nombre').value;
-		
+
 		if (accion=='editar')
 		{
 			var id=document.getElementById('id').value;
