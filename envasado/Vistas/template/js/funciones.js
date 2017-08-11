@@ -36,7 +36,7 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 		});
 	}
 
-	$scope.DatabarraDerecha=function()
+	$scope.DatabarraDerecha=function(graficar)
 	{
 		var idLinea=$('#lineaParaEstadistica').val();
     $('#resultadoDatabarraDerecha').val(0);
@@ -93,14 +93,45 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 				$scope.botellasLlenas=$scope.barraDerecha.botellasLlenas;
 				$scope.cajasVacias=$scope.barraDerecha.cajasVacias;
 				$scope.cajasLlenas=$scope.barraDerecha.cajasLlenas;
+        $scope.idProduccion=$scope.barraDerecha.idProduccion;
 				$scope.nulo="";
 
-				$scope.graficas=function()
-				{
-					$('#canvasModal').modal({
+				//$scope.graficas=function()
+				//{
+					/*$('#canvasModal').modal({
 				        show:true,
 				        backdrop:'static'
-				  });
+				  });*/
+          // fecha actual
+          var f = new Date();
+          var hours=f.getHours();
+          var minutes=f.getMinutes();
+          var seconds=f.getSeconds();
+          var horas=0;
+          var minutos=0;
+          var segundos=0;
+
+          if (hours<10) {
+            horas="0"+f.getHours();
+          } else {
+            horas=f.getHours();
+          }
+
+          if (minutes<10) {
+            minutos="0"+f.getMinutes();
+          } else {
+            minutos=f.getMinutes();
+          }
+
+          if (seconds<10) {
+            segundos="0"+f.getSeconds();
+          } else {
+            segundos=f.getSeconds();
+          }
+
+          $scope.fechaActual=horas+":"+minutos+":"+segundos;
+          // fin fecha actual
+        if (graficar==true) {
           Highcharts.chart('gaugeSpeedometer', {
             chart: {
                 type: 'gauge',
@@ -161,11 +192,12 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
                 tickLength: 10,
                 tickColor: '#666',
                 labels: {
+                    distance:-20,
                     step: 2,
                     rotation: 'auto'
                 },
                 title: {
-                    text: 'Cajas'
+                    text: $scope.fechaActual
                 },
                 plotBands: [{
                     from: 0,
@@ -183,23 +215,31 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
             },
             series: [{
                 name: 'Cantidad',
-                data: [0],
+                data: [$scope.cajasLlenas],
                 tooltip: {
                     valueSuffix: ' Cajas de Ron'
                 }
             }]
 
-          },
+          } ,
           // Add some life | ESTA FUNCION SE EJECUTA EN PARALELO CON EL SCRIPT
           function (chart) {
             if (!chart.renderer.forExport) { // necesario para funcionar
               setInterval(function () { // actualizacion de la data
+                chart.yAxis[0].update({
+                  title:{
+                    text: $scope.fechaActual
+                  }
+                });
                 var point = chart.series[0].points[0]; // necesario
                 point.update($scope.cajasLlenas); // refresca valor data de series => series.data
               }, 1000); // FIN actualizacion de la data
             } // FIN necesario para funcionar
-          });
-				}
+          }
+          );
+        }
+				//}
+			  $('#gaugeSpeedometer').show();
         $('#resultadoDatabarraDerecha').val(1);
 			}
 			else
@@ -223,6 +263,10 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 				$scope.cajasVacias='Nulo';
 				$scope.cajasLlenas='Nulo';
 				$scope.nulo={"color" : "#333"};
+        if (graficar==true) {
+          $('#gaugeSpeedometer').html('<img src="'+URL+'Vistas/template/imagenes/0.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">');
+        }
+        $('#relojGuage').val(0);
         $('#resultadoDatabarraDerecha').val(1);
 			}
 		});
@@ -240,10 +284,15 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 	});
 
   $scope.bucleAjax=1;
-
+  var graficar=true;
   var promise=$interval( function() {
     if ($scope.bucleAjax==1) {
-      $scope.DatabarraDerecha();
+      $scope.DatabarraDerecha(graficar);
+    }
+    graficar = false;
+    if ($('#relojGuage').val()==0) {
+      graficar = true;
+      $('#relojGuage').val(1);
     }
     $scope.bucleAjax = $('#resultadoDatabarraDerecha').val();
   }, 100);
@@ -422,7 +471,6 @@ miAplicacion.controller('validarProveedores', function ($scope,$http)
 
 		$http.post(URL+'proveedores/angular/buscar-municipio-editar_'+id).success(function (data)
 		{
-			//alert(data);
 			var res=data.split('<');
 			$scope.municipios=JSON.parse(res[0]);
 		});

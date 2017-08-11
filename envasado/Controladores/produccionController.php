@@ -1,16 +1,16 @@
-<?php 
+<?php
 	namespace Controladores;
 	use Modelos\Produccion as Produccion;
 
 	class produccionController
-	{	
+	{
 		private $produccion;
 
 		public function __construct()
 		{
 			$this->produccion=new Produccion();
 		}
-		
+
 		public function index()
 		{
 			return $datos=$this->produccion->listar();
@@ -24,6 +24,13 @@
 		public function detalle($id)
 		{
 			return $datos=$this->produccion->detalle($id);
+		}
+
+		public function historial($parametros)
+		{
+			return $datos=$this->produccion->historial($parametros);
+			var_dump($datos);
+			//die();
 		}
 
 		public function angular($datos)
@@ -59,7 +66,7 @@
 						}
 					?>
 					</tbody>
-				</table>	
+				</table>
 			<?php
 			}
 
@@ -84,7 +91,7 @@
 					<tr>
 						<td><?php echo $array['hora_fecha'];?></td>
 						<td>
-							<?php 
+							<?php
 								if($array['hora_fecha_reinicio'])
 								{
 									echo $array['hora_fecha_reinicio'];
@@ -101,7 +108,7 @@
 						}
 					?>
 					</tbody>
-				</table>	
+				</table>
 			<?php
 			}
 
@@ -121,7 +128,7 @@
 			if ($result[1]=='barraderecha')
 			{
 				$datos=$this->produccion->barraderecha($result[0]);
-				
+
 				echo json_encode($datos);
 			}
 		}

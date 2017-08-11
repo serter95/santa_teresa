@@ -84,24 +84,24 @@
 				</div>
 			</div>
 
-			<div id="canvasModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="error">
+			<!--div id="canvasModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="error">
 				<div class="modal-dialog modal-lg" role="document">
 				  <div class="modal-content">
 				    <div class="modal-header">
 				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				      <h4 class="modal-title"><?php echo $titulo ?></h4>
+				      <h4 class="modal-title"><?php //echo $titulo ?></h4>
 				    </div>
 				    <div class="modal-body">
 				    	<div id="container" style="width: 100%;">
 					        <div id="gaugeSpeedometer" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
 					    </div>
 				    	<center>
-				       		<button class="btn btn-primary" data-dismiss="modal"><?php echo $aceptar ?></button>
+				       		<button class="btn btn-primary" data-dismiss="modal"><?php //echo $aceptar ?></button>
 				       </center>
 				    </div>
 				  </div>
 				</div>
-			</div>
+			</div-->
 <?php
 			if ($url[0]!="inicio" && $url[1]=="index" && $url[2])
 			{
