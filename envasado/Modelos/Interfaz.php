@@ -1,8 +1,7 @@
 <?php
 	namespace Modelos;
 
-	interface Interfaz
-	{
+	interface Interfaz {
 		public function set($atributo, $valor);
 		public function get($atributo);
 		public function listar();

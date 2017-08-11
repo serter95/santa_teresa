@@ -4,9 +4,8 @@
 	abstract class Modelos
 	{
 		public $con;
-		
-		public function __construct()
-		{
+
+		public function __construct() {
 			$this->con = new Conexion();
 		}
 	}

@@ -1,11 +1,11 @@
-<?php 
+<?php
 	namespace Controladores;
 	use Modelos\Paletas as Paletas;
 
 	class paletasController extends controlador implements metodos
 	{
 		private $objeto;
-	
+
 		public function __construct()
 		{
 			$this->objeto=new Paletas();
@@ -25,8 +25,7 @@
 				$nombre=$this->Mayus($_POST['nombre']);
 				$nombre=str_replace("  ", " ", $nombre);
 
-				if(!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ 0-9]{5,}/", $nombre))
-				{
+				if(!preg_match("/^[A-Za-záéíóúñüÁÉÍÓÚÑÜ 0-9]{5,}/", $nombre)) {
 					$errorRegistro='si';
 				}
 
@@ -34,7 +33,7 @@
 				$this->objeto->set("bulk", $_POST['bulk']);
 				$this->objeto->set("cantidad_bulks", $_POST['cantidad_bulks']);
 				$this->objeto->set("id_botella", $_POST['botella']);
-				
+
 				while ($array=$resultado->fetch(\PDO::FETCH_ASSOC))
 				{
 					if ($array['nombre']==$nombre)
@@ -42,7 +41,7 @@
 						$errorRegistro='si';
 					}
 				}
-			
+
 				if ($errorRegistro=='si')
 				{
 					header("Location: ".URL."paletas/index/error-registrar");
@@ -50,10 +49,10 @@
 				else
 				{
 					$this->objeto->add();
-				
+
 					$permitidos=array("image/jpeg","image/png","image/jpg");
 					$limite=700;
-					
+
 					if (in_array($_FILES['foto']["type"], $permitidos) && $_FILES["foto"]["size"]<=$limite*1024)
 					{
 						$this->objeto->set("nombre", $nombre);
@@ -126,10 +125,10 @@
 				else
 				{
 					$this->objeto->edit();
-				
+
 					$permitidos=array("image/jpeg","image/png","image/jpg");
 					$limite=700;
-					
+
 					if (in_array($_FILES['foto']["type"], $permitidos) && $_FILES["foto"]["size"]<=$limite*1024)
 					{
 						$this->objeto->set("nombre", $nombre);

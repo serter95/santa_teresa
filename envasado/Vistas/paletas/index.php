@@ -17,27 +17,26 @@
 			</thead>
 			<tbody>
 			<?php
-				while($array=$datos->fetch(\PDO::FETCH_ASSOC))
-				{
+				while($array=$datos->fetch(\PDO::FETCH_ASSOC)) {
 			?>
 			<tr>
 				<td><?php echo $array['nombre'];?></td>
 				<td class="hidden-xs"><?php echo $array['bulk'];?></td>
 				<td><?php echo $array['cantidad_bulks'];?></td>
 				<td>
-					<?php 
+					<?php
 						$objeto2=new Modelos\Conexion();
 						$sql=$objeto2->seleccionar("nombre","botellas","id='".$array['id_botella']."'");
 						$query=$sql->fetch(\PDO::FETCH_ASSOC);
 						echo $query['nombre'];
 					?>
-				</td>						
+				</td>
 				<td>
 					<a class="btn btn-default" href="<?php echo URL;?>paletas/ver/<?php echo $array['id'];?>" title="Detalle"><span class="glyphicon glyphicon-zoom-in"></span></a>
 
 					<a class="btn btn-primary" href="<?php echo URL;?>paletas/editar/<?php echo $array['id'];?>" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
 
-					<a class="btn btn-danger" href="#" onclick="eliminar('paletas', '<?php echo $array['nombre'];?>', '<?php echo $array['id']; ?>', 'Usted está seguro que desea eliminar la paleta ');" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a> 
+					<a class="btn btn-danger" href="#" onclick="eliminar('paletas', '<?php echo $array['nombre'];?>', '<?php echo $array['id']; ?>', 'Usted está seguro que desea eliminar la paleta ');" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a>
 				</td>
 			</tr>
 			<?php

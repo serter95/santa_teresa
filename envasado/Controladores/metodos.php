@@ -1,8 +1,7 @@
 <?php
 	namespace Controladores;
-	
-	interface metodos
-	{
+
+	interface metodos {
 		public function index();
 		public function agregar();
 		public function editar($id);

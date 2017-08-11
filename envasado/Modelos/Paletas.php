@@ -9,9 +9,8 @@
 		private $cantidad_bulks;
 		private $foto;
 		private $id_botella;
-		
-		public function set($atributo, $valor)
-		{
+
+		public function set($atributo, $valor) {
 			$this->$atributo=$valor;
 		}
 
