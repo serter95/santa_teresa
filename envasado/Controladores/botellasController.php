@@ -1,4 +1,4 @@
-<?php 
+<?php
 	namespace Controladores;
 	use Modelos\Botellas as Botellas;
 
@@ -12,7 +12,7 @@
 		}
 
 		public function index()
-		{	
+		{
 			return $this->objeto->listar();
 		}
 
@@ -35,7 +35,7 @@
 				$this->objeto->set("id_proveedor", $_POST['proveedor']);
 				$this->objeto->set("id_medida", $_POST['medida']);
 				$this->objeto->set("foto", $_POST['foto']);
-				
+
 				while ($array=$resultado->fetch(\PDO::FETCH_ASSOC))
 				{
 					if ($array['nombre']==$nombre)
@@ -43,7 +43,7 @@
 						$errorRegistro='si';
 					}
 				}
-			
+
 				if ($errorRegistro=='si')
 				{
 					header("Location: ".URL."botellas/index/error-registrar");
@@ -54,7 +54,7 @@
 
 					$permitidos=array("image/jpeg","image/png","image/jpg");
 					$limite=700;
-					
+
 					if (in_array($_FILES['foto']["type"], $permitidos) && $_FILES["foto"]["size"]<=$limite*1024)
 					{
 						$this->objeto->set("nombre", $_POST['nombre']);
@@ -128,10 +128,10 @@
 				else
 				{
 					$this->objeto->edit();
-				
+
 					$permitidos=array("image/jpeg","image/png","image/jpg");
 					$limite=700;
-					
+
 					if (in_array($_FILES['foto']["type"], $permitidos) && $_FILES["foto"]["size"]<=$limite*1024)
 					{
 						$this->objeto->set("nombre", $_POST['nombre']);
@@ -206,7 +206,7 @@
 							$array[]=1;
 						}
 					}
-			    }
+			  }
 			}
 
 			if ($parametro[0]=='proveedores')

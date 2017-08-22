@@ -129,6 +129,9 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
             segundos=f.getSeconds();
           }
 
+          var maximo=$scope.cajasEstimadas;
+          var terceraParte=maximo/3;
+
           $scope.fechaActual=horas+":"+minutos+":"+segundos;
           // fin fecha actual
         if (graficar==true) {
@@ -178,7 +181,7 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
             // the value axis
             yAxis: {
                 min: 0,
-                max: 10000,
+                max: maximo, // MAXIMO
 
                 minorTickInterval: 'auto',
                 minorTickWidth: 1,
@@ -201,15 +204,15 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
                 },
                 plotBands: [{
                     from: 0,
-                    to: 3333.33,
+                    to: terceraParte, // 1ra Parte
                     color: '#DF5353' // red
                 }, {
-                    from: 3333.33,
-                    to: 6666.66,
+                    from: terceraParte, // 1ra Parte
+                    to: terceraParte+terceraParte, // 2da Parte
                     color: '#DDDF0D' // yellow
                 }, {
-                    from: 6666.66,
-                    to: 10000,
+                    from: terceraParte+terceraParte, // 2da Parte
+                    to: maximo, // MAXIMO
                     color: '#55BF3B' // green
                 }]
             },
@@ -760,6 +763,56 @@ miAplicacion.controller('validarPaletas', function ($scope,$http)
 			}
 		});
 	}
+});
+
+miAplicacion.controller('validarPlanificacion', function ($scope,$http)
+{
+	var accion = document.getElementById('accion').value;
+
+  var f = new Date();
+  var dia =f.getDate(), mes=f.getMonth()+1, anio=f.getFullYear()
+  if (dia<10) {
+    dia="0"+dia;
+  }
+  if (mes<10) {
+    mes="0"+mes;
+  }
+  var date=anio+"-"+mes+"-"+dia;
+  $scope.fecha_produccion=date;
+
+  $http.post(URL+'planificacion/angular/lineas_1').success(function (data)
+  {
+    var res=data.split('<');
+    $scope.lineasProduccion=JSON.parse(res[0]);
+  });
+
+	if (accion=='editar')
+	{
+    $scope.fecha_produccion="";
+		var id=document.getElementById('id').value;
+
+		$http.post(URL+'planificacion/angular/editar_'+id).success(function (data)
+		{
+			var res=data.split('<');
+			$scope.editPlanificacion=JSON.parse("["+res[0]+"]");
+		});
+	}
+
+  $scope.validacion=function () {
+    var fecha=$('#fecha_produccion').val();
+    var linea=$('#linea').val();
+    $http.post(URL+'planificacion/angular/validar_'+fecha+'_'+linea+'_'+id).success(function (data)
+		{
+			var res=data.split('<');
+			$scope.resultado=JSON.parse(res[0]);
+      if ($scope.resultado.resultadoValidacion) {
+          $scope.resultadoValidacion=$scope.resultado.resultadoValidacion
+          $scope.planificacion.$invalid=true;
+      } else {
+        $scope.resultadoValidacion="";
+      }
+		});
+  }
 });
 // FIN ANGULARJS
 
