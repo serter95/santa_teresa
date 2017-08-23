@@ -15,7 +15,7 @@
 
 		public function detalle($id)
 		{
-			$produccion=$this->con->seleccionar("p.id, p.id_linea, p.fecha_hora_inicio, p.fecha_hora_fin, p.cantidad_paletas, p.id_botella, p.id_caja, p.id_etiqueta, p.id_tapa, l.nombre as nombre_linea, pe.cedula, pe.nombres, pe.apellidos, pe.jornada, pa.nombre as nombre_paleta, pa.bulk, pa.cantidad_bulks", "produccion p, lineas l, personal pe, paleta pa", "l.id=p.id_linea AND pe.id=p.supervisor AND pa.id_botella=p.id_botella AND p.estatus=1 AND l.estatus=1 AND pe.estatus=1 AND pa.estatus=1 AND p.id='$id' LIMIT 1");
+			$produccion=$this->con->seleccionar("p.id, p.id_linea, p.fecha_hora_inicio, p.fecha_hora_fin, p.cantidad_paletas, p.id_botella, p.id_caja, p.id_etiqueta, p.id_tapa, l.nombre as nombre_linea, pe.cedula, pe.nombres, pe.apellidos, pe.jornada, pa.nombre as nombre_paleta, pa.bulk, pa.cantidad_bulks, planif.estimacion_total", "produccion p, lineas l, personal pe, paleta pa, planificacion planif", "l.id=p.id_linea AND pe.id=p.supervisor AND pa.id_botella=p.id_botella AND planif.id=p.id_planificacion AND p.estatus=1 AND l.estatus=1 AND pe.estatus=1 AND pa.estatus=1 AND planif.estatus=1 AND p.id='$id' LIMIT 1");
 			$produccionTotal=$produccion->fetch(\PDO::FETCH_ASSOC);
 
 			$botella=$this->con->seleccionar("b.nombre as nombre_botella, b.distribucion, m.tipo, p.nombre as nombre_proveedor","botellas b, medidas m, proveedor p","b.id_medida=m.id AND b.id_proveedor=p.id AND b.estatus=1 AND m.estatus=1 AND p.estatus=1 AND b.id='".$produccionTotal['id_botella']."' LIMIT 1");
@@ -99,7 +99,7 @@
 
 		public function barraderecha($id)
 		{
-			$lineas=$this->con->seleccionar("l.nombre AS l_nombre, l.estado, l.imagen, p.id, b.nombre, p.fecha_hora_inicio, p.fecha_hora_fin, pe.nombres, pe.apellidos", "lineas l, produccion p, botellas b, personal pe", "l.id=p.id_linea AND p.id_botella=b.id AND p.supervisor=pe.id AND l.estatus=1 AND p.estatus=1 AND b.estatus=1 AND pe.estatus=1 AND l.id='$id' AND p.id_linea='$id' ORDER BY p.id DESC");
+			$lineas=$this->con->seleccionar("l.nombre AS l_nombre, l.estado, l.imagen, p.id, b.nombre, p.fecha_hora_inicio, p.fecha_hora_fin, pe.nombres, pe.apellidos, pla.estimacion_total", "lineas l, produccion p, botellas b, personal pe, planificacion pla", "l.id=p.id_linea AND p.id_botella=b.id AND p.supervisor=pe.id AND pla.id=p.id_planificacion AND l.estatus=1 AND p.estatus=1 AND b.estatus=1 AND pe.estatus=1 AND pla.estatus=1 AND l.id='$id' AND p.id_linea='$id' ORDER BY p.id DESC");
 
 			$num=$lineas->rowCount();
 			$lineas=$lineas->fetch(\PDO::FETCH_ASSOC);
@@ -130,8 +130,8 @@
 				'producto' => $lineas['nombre'],
 				'fecha_hora_inicio' => $lineas['fecha_hora_inicio'],
 				'fecha_hora_fin' => $lineas['fecha_hora_fin'],
-				'botellasEstimadas' => 'En Espera...',
-				'cajasEstimadas' => 'En Espera...',
+				//'botellasEstimadas' => 'En Espera...',
+				'cajasEstimadas' => $lineas['estimacion_total'],
 				'ultimaUbicacion' => $nomParadas['nombre'],
 				'paradas' => $contadores['parada_emergencia'],
 				'totalCamadas' => $contadores['bulks_usados'],

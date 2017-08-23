@@ -16,7 +16,6 @@
 		<center>
 			<h5 id="seleccione">Seleccione una opción para ver los datos de la línea</h5>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
 				<select id="lineaParaEstadistica" ng-model="lineaParaEstadistica" ng-change="actualizarLinea()" class="form-control">
 					<option value="">Seleccione una linea</option>
 					<?php
@@ -105,9 +104,9 @@
 
                     	<h5><b>Estimaciones:</b></h5>
 
-											<div class="datosBarra">Botellas Estimadas:
+											<!--div class="datosBarra">Botellas Estimadas:
 												<span ng-style="nulo" class="numeros" ng-bind="botellasEstimadas"></span>
-											</div>
+											</div-->
 											<div class="datosBarra">Cajas Estimadas:
 												<span ng-style="nulo" class="numeros" ng-bind="cajasEstimadas"></span>
 											</div>

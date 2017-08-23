@@ -4,12 +4,9 @@
 		<h3 class="panel-title">
 			<?php echo "Producción desde '".$datos['fecha_hora_inicio']."' hasta ";
 
-				if ($datos['fecha_hora_fin']=='2017-01-01 00:00:00')
-				{
+				if (!$datos['fecha_hora_fin']){
 					echo "'".date('Y-m-d H:m:i')."' (No Culminada)";
-				}
-				else
-				{
+				} else {
 					echo "'".$datos['fecha_hora_fin']."' (Culminada)";
 				}
 			?>
@@ -17,8 +14,6 @@
 	</div>
 	<div class="panel-body" ng-controller="informacionModal">
 		<div class="informacion">
-			<a class="btn btn-danger boton-informacion" ng-click="informacion('<?php echo URL;?>produccion/angular/<?php echo $datos['id'];?>_emergencia')">Paradas de Emergencia <span class="glyphicon glyphicon-th-list"></span></a>
-
 			<a class="btn btn-info boton-informacion" ng-click="informacion('<?php echo URL;?>produccion/angular/<?php echo $datos['id'];?>_personal')">Personal <span class="glyphicon glyphicon-th-list"></span></a>
 		</div>
 
@@ -46,6 +41,7 @@
 					<th>Camadas Usadas</th>
 					<!--th>Cantidad de Paletas</th-->
 					<th>Paradas de Emergencia</th>
+					<th>Estimación Total</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,6 +49,7 @@
 					<td><a href="<?php echo URL; ?>produccion/historial/camadas-usadas-<?php echo $datos['id']; ?>"><?php echo $datos[4]['bulks_usados'];?></a></td>
 					<!--td><?php //echo $datos['cantidad_paletas'];?></td-->
 					<td><a href="<?php echo URL; ?>produccion/historial/paradas-emergencia-<?php echo $datos['id']; ?>"><?php echo $datos[4]['parada_emergencia'];?></a></td>
+					<td><?php echo $datos['estimacion_total']; ?></td>
 				</tr>
 			</tbody>
 		</table>
