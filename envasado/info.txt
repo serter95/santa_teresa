@@ -28,3 +28,7 @@ luego buscar la linea 'AllowOverride None' y cambiar por 'AllowOverride All' (li
  Activar RewriteEngine
 
  Si nada de esto sirve busca como activar rewrite_module en wamp en google
+
+ RESTAURACION DE BD
+
+ mysql --user=****** --password=****** db_nom < /Ruta/Hacia/archivo_dump.SQL
