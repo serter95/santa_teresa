@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-08-2017 a las 16:49:31
+-- Tiempo de generación: 23-08-2017 a las 15:14:03
 -- Versión del servidor: 5.7.19-0ubuntu0.16.04.1
--- Versión de PHP: 7.0.18-0ubuntu0.16.04.1
+-- Versión de PHP: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -7436,6 +7436,7 @@ INSERT INTO `botellas_vacias` (`id`, `contador`, `fecha_hora`, `id_produccion`, 
 
 CREATE TABLE `bulk_usados` (
   `id` int(11) NOT NULL,
+  `contador` int(11) NOT NULL,
   `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_produccion` int(11) NOT NULL,
   `id_paleta` int(11) NOT NULL,
@@ -16657,6 +16658,50 @@ INSERT INTO `personal_trabajo` (`id`, `id_personal`, `id_produccion`, `id_estaci
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `planificacion`
+--
+
+CREATE TABLE `planificacion` (
+  `id` int(11) NOT NULL,
+  `fecha_produccion` date NOT NULL,
+  `estimacion_total` int(11) NOT NULL,
+  `id_linea` int(11) NOT NULL,
+  `usado` tinyint(1) NOT NULL DEFAULT '0',
+  `estatus` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `planificacion`
+--
+
+INSERT INTO `planificacion` (`id`, `fecha_produccion`, `estimacion_total`, `id_linea`, `usado`, `estatus`) VALUES
+(3, '2017-08-21', 3923, 1, 0, 0),
+(4, '2017-08-21', 3923, 1, 0, 0),
+(5, '2017-08-21', 5000, 2, 0, 0),
+(6, '2017-08-21', 7600, 3, 0, 0),
+(7, '2017-08-21', 560909, 4, 0, 0),
+(8, '2017-08-21', 3000, 6, 0, 0),
+(9, '2017-08-21', 4000, 1, 0, 0),
+(10, '2017-08-21', 2300, 2, 0, 0),
+(11, '2017-08-21', 2000, 3, 0, 0),
+(12, '2017-08-21', 4000, 4, 0, 0),
+(13, '2017-08-21', 4000, 4, 0, 0),
+(14, '2017-08-21', 2345, 5, 0, 0),
+(15, '2017-08-21', 2222, 6, 0, 0),
+(16, '2017-08-21', 5000, 6, 0, 0),
+(17, '2017-08-21', 5000, 1, 0, 1),
+(18, '2017-08-22', 1234, 2, 0, 1),
+(19, '2017-08-22', 1234, 1, 0, 1),
+(20, '2017-08-22', 1234, 3, 0, 1),
+(21, '2017-08-22', 1234, 4, 0, 1),
+(22, '2017-08-22', 1234, 5, 0, 1),
+(23, '2017-08-22', 1234, 6, 0, 0),
+(24, '2017-08-22', 5000, 6, 0, 0),
+(25, '2017-08-23', 2300, 1, 0, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `privilegio`
 --
 
@@ -16693,6 +16738,7 @@ CREATE TABLE `produccion` (
   `id_botella` int(11) NOT NULL,
   `supervisor` int(11) NOT NULL,
   `fecha_hora_fin` timestamp NULL DEFAULT NULL,
+  `id_planificacion` int(11) DEFAULT NULL,
   `estatus` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -16700,40 +16746,40 @@ CREATE TABLE `produccion` (
 -- Volcado de datos para la tabla `produccion`
 --
 
-INSERT INTO `produccion` (`id`, `id_linea`, `fecha_hora_inicio`, `cantidad_paletas`, `id_caja`, `id_etiqueta`, `id_tapa`, `id_botella`, `supervisor`, `fecha_hora_fin`, `estatus`) VALUES
-(1, 1, '2017-02-24 12:48:29', 2, 1, 1, 2, 2, 1, '2017-01-01 04:00:00', 1),
-(2, 1, '2017-02-24 12:50:39', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(3, 1, '2006-01-01 01:11:47', 1, 1, 2, 2, 1, 2, '2017-01-01 04:00:00', 1),
-(4, 1, '2006-01-01 01:14:44', 1, 1, 1, 1, 1, 2, '2017-01-01 04:00:00', 1),
-(5, 1, '2006-01-01 01:19:24', 1, 1, 2, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(6, 1, '2006-01-01 01:22:10', 1, 1, 1, 2, 1, 2, '2017-01-01 04:00:00', 1),
-(7, 1, '2006-01-01 01:23:42', 1, 1, 1, 2, 1, 2, '2017-01-01 04:00:00', 1),
-(8, 1, '2006-01-01 02:13:00', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(9, 1, '2006-01-01 01:47:20', 1, 1, 1, 1, 1, 2, '2017-01-01 04:00:00', 1),
-(10, 1, '2006-01-01 03:02:18', 1, 2, 1, 2, 2, 3, '2017-01-01 04:00:00', 1),
-(11, 1, '2006-01-01 03:08:30', 1, 2, 3, 2, 2, 2, '2017-01-01 04:00:00', 1),
-(12, 1, '2006-01-01 23:37:07', 1, 1, 1, 1, 1, 2, '2017-01-01 04:00:00', 1),
-(13, 1, '2006-01-02 00:02:40', 1, 2, 2, 1, 2, 1, '2017-01-01 04:00:00', 1),
-(14, 1, '2006-01-02 00:08:34', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(15, 1, '2006-01-02 00:24:57', 1, 1, 1, 2, 1, 2, '2017-01-01 04:00:00', 1),
-(16, 1, '2006-01-02 00:50:28', 1, 1, 2, 4, 1, 1, '2017-01-01 04:00:00', 1),
-(17, 1, '2006-01-02 01:05:55', 1, 1, 2, 2, 1, 2, '2017-01-01 04:00:00', 1),
-(18, 1, '2006-01-02 01:14:08', 1, 1, 2, 2, 1, 1, '2017-01-01 04:00:00', 1),
-(19, 1, '2006-01-02 01:20:12', 1, 2, 1, 2, 2, 2, '2017-01-01 04:00:00', 1),
-(20, 1, '2006-01-02 01:26:38', 1, 2, 1, 3, 2, 2, '2017-01-01 04:00:00', 1),
-(21, 1, '2006-01-02 01:35:57', 1, 2, 1, 1, 2, 2, '2017-01-01 04:00:00', 1),
-(22, 1, '2006-01-02 01:42:57', 1, 1, 1, 2, 1, 1, '2017-01-01 04:00:00', 1),
-(23, 1, '2006-01-02 02:33:36', 1, 4, 1, 3, 4, 1, '2017-01-01 04:00:00', 1),
-(24, 1, '2006-01-01 00:38:30', 1, 2, 2, 1, 2, 1, '2017-01-01 04:00:00', 1),
-(25, 1, '2006-01-01 01:37:06', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(26, 1, '2006-01-01 01:43:25', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(27, 1, '2006-01-01 01:48:44', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(28, 1, '2006-01-01 01:51:44', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(29, 1, '2006-01-01 02:03:25', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(30, 1, '2006-01-01 02:13:57', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(31, 1, '2006-01-01 02:21:32', 1, 1, 2, 1, 1, 1, '2017-01-01 04:00:00', 1),
-(32, 1, '2006-01-01 02:37:29', 1, 1, 1, 2, 1, 1, '2017-01-01 04:00:00', 1),
-(33, 1, '2006-01-01 16:27:56', 1, 1, 2, 1, 1, 1, '2017-01-01 04:00:00', 1);
+INSERT INTO `produccion` (`id`, `id_linea`, `fecha_hora_inicio`, `cantidad_paletas`, `id_caja`, `id_etiqueta`, `id_tapa`, `id_botella`, `supervisor`, `fecha_hora_fin`, `id_planificacion`, `estatus`) VALUES
+(1, 1, '2017-02-24 12:48:29', 2, 1, 1, 2, 2, 1, '2017-01-01 04:00:00', NULL, 1),
+(2, 1, '2017-02-24 12:50:39', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(3, 1, '2006-01-01 01:11:47', 1, 1, 2, 2, 1, 2, '2017-01-01 04:00:00', NULL, 1),
+(4, 1, '2006-01-01 01:14:44', 1, 1, 1, 1, 1, 2, '2017-01-01 04:00:00', NULL, 1),
+(5, 1, '2006-01-01 01:19:24', 1, 1, 2, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(6, 1, '2006-01-01 01:22:10', 1, 1, 1, 2, 1, 2, '2017-01-01 04:00:00', NULL, 1),
+(7, 1, '2006-01-01 01:23:42', 1, 1, 1, 2, 1, 2, '2017-01-01 04:00:00', NULL, 1),
+(8, 1, '2006-01-01 02:13:00', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(9, 1, '2006-01-01 01:47:20', 1, 1, 1, 1, 1, 2, '2017-01-01 04:00:00', NULL, 1),
+(10, 1, '2006-01-01 03:02:18', 1, 2, 1, 2, 2, 3, '2017-01-01 04:00:00', NULL, 1),
+(11, 1, '2006-01-01 03:08:30', 1, 2, 3, 2, 2, 2, '2017-01-01 04:00:00', NULL, 1),
+(12, 1, '2006-01-01 23:37:07', 1, 1, 1, 1, 1, 2, '2017-01-01 04:00:00', NULL, 1),
+(13, 1, '2006-01-02 00:02:40', 1, 2, 2, 1, 2, 1, '2017-01-01 04:00:00', NULL, 1),
+(14, 1, '2006-01-02 00:08:34', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(15, 1, '2006-01-02 00:24:57', 1, 1, 1, 2, 1, 2, '2017-01-01 04:00:00', NULL, 1),
+(16, 1, '2006-01-02 00:50:28', 1, 1, 2, 4, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(17, 1, '2006-01-02 01:05:55', 1, 1, 2, 2, 1, 2, '2017-01-01 04:00:00', NULL, 1),
+(18, 1, '2006-01-02 01:14:08', 1, 1, 2, 2, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(19, 1, '2006-01-02 01:20:12', 1, 2, 1, 2, 2, 2, '2017-01-01 04:00:00', NULL, 1),
+(20, 1, '2006-01-02 01:26:38', 1, 2, 1, 3, 2, 2, '2017-01-01 04:00:00', NULL, 1),
+(21, 1, '2006-01-02 01:35:57', 1, 2, 1, 1, 2, 2, '2017-01-01 04:00:00', NULL, 1),
+(22, 1, '2006-01-02 01:42:57', 1, 1, 1, 2, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(23, 1, '2006-01-02 02:33:36', 1, 4, 1, 3, 4, 1, '2017-01-01 04:00:00', NULL, 1),
+(24, 1, '2006-01-01 00:38:30', 1, 2, 2, 1, 2, 1, '2017-01-01 04:00:00', NULL, 1),
+(25, 1, '2006-01-01 01:37:06', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(26, 1, '2006-01-01 01:43:25', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(27, 1, '2006-01-01 01:48:44', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(28, 1, '2006-01-01 01:51:44', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(29, 1, '2006-01-01 02:03:25', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(30, 1, '2006-01-01 02:13:57', 1, 1, 1, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(31, 1, '2006-01-01 02:21:32', 1, 1, 2, 1, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(32, 1, '2006-01-01 02:37:29', 1, 1, 1, 2, 1, 1, '2017-01-01 04:00:00', NULL, 1),
+(33, 1, '2006-01-01 16:27:56', 1, 1, 2, 1, 1, 1, '2017-01-01 10:36:28', 17, 1);
 
 -- --------------------------------------------------------
 
@@ -16973,6 +17019,13 @@ ALTER TABLE `personal_trabajo`
   ADD KEY `id_produccion` (`id_produccion`) USING BTREE;
 
 --
+-- Indices de la tabla `planificacion`
+--
+ALTER TABLE `planificacion`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_linea` (`id_linea`);
+
+--
 -- Indices de la tabla `privilegio`
 --
 ALTER TABLE `privilegio`
@@ -16988,7 +17041,8 @@ ALTER TABLE `produccion`
   ADD KEY `id_etiqueta` (`id_etiqueta`) USING BTREE,
   ADD KEY `id_linea` (`id_linea`) USING BTREE,
   ADD KEY `id_tapa` (`id_tapa`) USING BTREE,
-  ADD KEY `supervisor` (`supervisor`) USING BTREE;
+  ADD KEY `supervisor` (`supervisor`) USING BTREE,
+  ADD KEY `id_planificacion` (`id_planificacion`);
 
 --
 -- Indices de la tabla `proveedor`
@@ -17110,6 +17164,11 @@ ALTER TABLE `personal`
 ALTER TABLE `personal_trabajo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 --
+-- AUTO_INCREMENT de la tabla `planificacion`
+--
+ALTER TABLE `planificacion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
 -- AUTO_INCREMENT de la tabla `privilegio`
 --
 ALTER TABLE `privilegio`
@@ -17227,10 +17286,17 @@ ALTER TABLE `personal_trabajo`
   ADD CONSTRAINT `personal_trabajo_ibfk_3` FOREIGN KEY (`id_estacion`) REFERENCES `estacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `planificacion`
+--
+ALTER TABLE `planificacion`
+  ADD CONSTRAINT `planificacion_ibfk_1` FOREIGN KEY (`id_linea`) REFERENCES `lineas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `produccion`
 --
 ALTER TABLE `produccion`
   ADD CONSTRAINT `produccion_ibfk_10` FOREIGN KEY (`id_linea`) REFERENCES `lineas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `produccion_ibfk_11` FOREIGN KEY (`id_planificacion`) REFERENCES `planificacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `produccion_ibfk_5` FOREIGN KEY (`id_caja`) REFERENCES `cajas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `produccion_ibfk_6` FOREIGN KEY (`supervisor`) REFERENCES `personal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `produccion_ibfk_7` FOREIGN KEY (`id_botella`) REFERENCES `botellas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,

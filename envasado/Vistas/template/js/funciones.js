@@ -84,7 +84,8 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
 					$scope.estiloProduccion={"color" : "green"};
 				}
 
-				$scope.botellasEstimadas=$scope.barraDerecha.botellasEstimadas;
+				$scope.botellasEstimadas=$scope.barraDerecha.totalCamadas*$scope.barraDerecha.cantidadBotellasPaleta;
+        $scope.botellasReales=$scope.barraDerecha.cajasLlenas*$scope.barraDerecha.cantidadBotellasCajas;
 				$scope.cajasEstimadas=$scope.barraDerecha.cajasEstimadas;
 				$scope.totalParadas=$scope.barraDerecha.paradas;
 				$scope.UltimaParada=$scope.barraDerecha.ultimaUbicacion;
@@ -130,7 +131,11 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
           }
 
           var maximo=$scope.cajasEstimadas;
+          if(isNaN(maximo)){
+            maximo=0;
+          }
           var terceraParte=maximo/3;
+          var distanciaNumeros=maximo/100;
 
           $scope.fechaActual=horas+":"+minutos+":"+segundos;
           // fin fecha actual
@@ -189,7 +194,7 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
                 minorTickPosition: 'inside',
                 minorTickColor: '#666',
 
-                tickPixelInterval: 30,
+                tickPixelInterval: distanciaNumeros, // cantidad de numeros
                 tickWidth: 2,
                 tickPosition: 'inside',
                 tickLength: 10,
@@ -240,6 +245,9 @@ miAplicacion.controller('barraDerecha', function ($scope,$http,$interval)
             } // FIN necesario para funcionar
           }
           );
+          if (maximo==0) {
+            $('#gaugeSpeedometer').html('<img src="'+URL+'Vistas/template/imagenes/0.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">');
+          }
         }
 				//}
 			  $('#gaugeSpeedometer').show();

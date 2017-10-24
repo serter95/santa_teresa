@@ -104,9 +104,12 @@
 
                     	<h5><b>Estimaciones:</b></h5>
 
-											<!--div class="datosBarra">Botellas Estimadas:
+											<div class="datosBarra">Botellas por Paleta:
 												<span ng-style="nulo" class="numeros" ng-bind="botellasEstimadas"></span>
-											</div-->
+											</div>
+											<div class="datosBarra">Botellas Reales:
+												<span ng-style="nulo" class="numeros" ng-bind="botellasReales"></span>
+											</div>
 											<div class="datosBarra">Cajas Estimadas:
 												<span ng-style="nulo" class="numeros" ng-bind="cajasEstimadas"></span>
 											</div>

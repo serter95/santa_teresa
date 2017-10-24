@@ -37,7 +37,7 @@
 					<div class="form-group">
 						<label for="estimacion_total" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label">Estimación Total:</label>
 						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
-							<input class="form-control" id="estimacion_total" ng-blur="validacion()" type="number"
+							<input class="form-control" id="estimacion_total" ng-blur="validacion()" ng-keyup="validacion()" type="number"
 							name="estimacion_total" title="Ingrese el número de cajas llenas estimadas Ej:5000"
 							placeholder="Ejemplo: 5000" ng-model="estimacion_total"
 							ng-pattern="'^[0-9]{1,}'" min="1" required>

@@ -140,6 +140,12 @@
 								$array=array(
 									'resultadoValidacion' => 'Ya Existe la Planificación',
 								);
+							} else {
+								if ($arreglo['usado']==1) {
+									$array=array(
+										'resultadoValidacion' => 'Planificación en uso! No se puede modificar',
+									);
+								}
 							}
 						}
 					} else {

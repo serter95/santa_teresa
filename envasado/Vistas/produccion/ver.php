@@ -31,8 +31,7 @@
 				<td><?php echo $array['fecha_hora_fin'];?></td>
 				<td>
 					<a class="btn btn-default" href="<?php echo URL;?>produccion/detalle/<?php echo $array['id_produccion'];?>" title="Detalle"><span class="glyphicon glyphicon-zoom-in"></span></a>
-
-					<a class="btn btn-info" href="#" onclick="" title="Reporte"><span class="glyphicon glyphicon-print"></span></a>
+					<a class="btn btn-info" href="<?php echo URL;?>produccion/pdf/<?php echo $array['id_produccion'];?>" target="_blank" title="Reporte"><span class="glyphicon glyphicon-print"></span></a>
 				</td>
 			</tr>
 			<?php

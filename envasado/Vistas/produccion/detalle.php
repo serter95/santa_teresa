@@ -49,7 +49,7 @@
 					<td><a href="<?php echo URL; ?>produccion/historial/camadas-usadas-<?php echo $datos['id']; ?>"><?php echo $datos[4]['bulks_usados'];?></a></td>
 					<!--td><?php //echo $datos['cantidad_paletas'];?></td-->
 					<td><a href="<?php echo URL; ?>produccion/historial/paradas-emergencia-<?php echo $datos['id']; ?>"><?php echo $datos[4]['parada_emergencia'];?></a></td>
-					<td><?php echo $datos['estimacion_total']; ?></td>
+					<td><?php echo $datos[5]['estimacion']; ?></td>
 				</tr>
 			</tbody>
 		</table>
