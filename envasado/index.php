@@ -32,6 +32,7 @@ class Template
 				<link rel="stylesheet" href="<?php echo URL; ?>Vistas/template/css/bootstrap.min.css">
 				<link rel="stylesheet" href="<?php echo URL; ?>Vistas/template/css/dataTables.min.css">
 				<link rel="stylesheet" href="<?php echo URL; ?>Vistas/template/css/jquery.fancybox.css">
+				<link rel="stylesheet" href="<?php echo URL; ?>Vistas/template/css/responsive.dataTables.min.css">
 				<link rel="stylesheet" href="<?php echo URL; ?>Vistas/template/css/mio.css">
 			</head>
 			<body>
@@ -59,7 +60,7 @@ class Template
 ?>
 				</div>
 <?php
-			Vistas\template\plantillas\barraDerecha::index();
+					Vistas\template\plantillas\barraDerecha::index();
 ?>
 			</div>
 <?php
@@ -74,6 +75,7 @@ class Template
 			<script src="<?php echo URL; ?>Vistas/template/js/highcharts.js"></script>
 			<script src="<?php echo URL; ?>Vistas/template/js/highcharts-more.js"></script>
 			<script src="<?php echo URL; ?>Vistas/template/js/modules/exporting.js"></script>
+			<script src="<?php echo URL; ?>Vistas/template/js/dataTables.responsive.min.js"></script>
 			<script src="<?php echo URL; ?>Vistas/template/js/funciones.js"></script>
 <?php
 			Vistas\template\plantillas\modales::index($url);

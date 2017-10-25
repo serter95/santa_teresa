@@ -39,7 +39,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="bulk" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label">Botellas por Camada:</label>
+						<label for="bulk" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label">Botellas P/C:</label>
 						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
 							<input class="form-control" id="bulk" type="text"
 							name="bulk" title="Ingrese el número de botellas por camada Ej:120"
@@ -55,7 +55,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="cantidad_bulks" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label">Cantidad de Camadas:</label>
+						<label for="cantidad_bulks" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label">Camadas:</label>
 						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
 							<input class="form-control" id="cantidad_bulks" type="text"
 							name="cantidad_bulks" title="Ingrese el número de camadas Ej:30"

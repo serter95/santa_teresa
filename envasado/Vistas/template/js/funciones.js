@@ -5,7 +5,9 @@ var URL=$('#HTTP_HOST').val();
 
 $(document).ready(function(){
     $('.fancybox').fancybox();
-    $('#myTable').DataTable();
+    $('#myTable').DataTable({
+      //responsive: true
+    });
 });
 
 miAplicacion.controller('informacionModal', function ($scope,$http)

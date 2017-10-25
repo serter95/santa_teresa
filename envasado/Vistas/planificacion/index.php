@@ -21,7 +21,7 @@
 					<th>Fecha de Producción</th>
 					<th>Linea</th>
 					<th>Estimación Total</th>
-					<th>Usada</th>
+					<th class="hidden-xs">Usada</th>
 					<th>Acción</th>
 				</tr>
 			</thead>
@@ -33,7 +33,7 @@
 				<td><?php echo $array['fecha_produccion'];?></td>
 				<td><?php echo $array['nombre'];?></td>
 				<td><?php echo $array['estimacion_total'];?></td>
-				<td>
+				<td class="hidden-xs">
 					<?php
 						if ($array['usado']==1) {
 						  echo "Si";
