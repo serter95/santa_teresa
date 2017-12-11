@@ -11,7 +11,7 @@
 			self::$barraDerecha=new Produccion();
 			$datos=self::$barraDerecha->listar();
 ?>
-<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 columDerecha" style="min-height: 30em; max-height: 40em; overflow-y: auto;" ng-controller="barraDerecha">
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 columDerecha" style="min-height: 30em; overflow-y: auto;" ng-controller="barraDerecha">
 	<div class="panel panel-default">
 		<center>
 			<h5 id="seleccione">Seleccione una opción para ver los datos de la línea</h5>
@@ -104,9 +104,12 @@
 
                     	<h5><b>Estimaciones:</b></h5>
 
-											<!--div class="datosBarra">Botellas Estimadas:
+											<div class="datosBarra">Botellas por Paleta:
 												<span ng-style="nulo" class="numeros" ng-bind="botellasEstimadas"></span>
-											</div-->
+											</div>
+											<div class="datosBarra">Botellas Reales:
+												<span ng-style="nulo" class="numeros" ng-bind="botellasReales"></span>
+											</div>
 											<div class="datosBarra">Cajas Estimadas:
 												<span ng-style="nulo" class="numeros" ng-bind="cajasEstimadas"></span>
 											</div>
@@ -162,7 +165,6 @@
 		</div>
 
 		<div class="estadisticas"></div>
-
 </div>
 <?php
 		}

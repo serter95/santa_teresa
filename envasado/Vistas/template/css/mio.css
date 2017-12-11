@@ -19,13 +19,6 @@
   padding-left: 15px;
   margin-left: 1%; }
 
-.enfocar {
-  background-color: #10528a;
-  color: #fff; }
-
-.navbar-inverse .navbar-nav > li > a {
-  color: #fff; }
-
 .row {
   margin-bottom: 20px; }
 
@@ -172,149 +165,41 @@ body {
     .box-principal {
       margin-top: 13%; } }
 
-#negro {
-  background: #000;
-  border-color: #000; }
-  @media screen and (max-width: 768px) {
-    #negro {
-      margin-top: -9px; } }
-
-.blancoTitulo {
-  margin-left: 0%;
-  font-size: 1.2em;
-  color: #fff;
-  display: inline-block; }
-  @media screen and (max-width: 2560px) {
-    .blancoTitulo {
-      margin-top: 3.5%;
-      margin-left: -90%;
-      font-size: 2.5em; } }
-  @media screen and (max-width: 1440px) {
-    .blancoTitulo {
-      margin-top: 0%;
-      margin-left: 0%;
-      font-size: 1em; } }
-  @media screen and (max-width: 768px) {
-    .blancoTitulo {
-      margin-top: 2%;
-      margin-left: 0%;
-      font-size: 0.8em; } }
-  @media screen and (max-width: 320px) {
-    .blancoTitulo {
-      margin-top: 2%;
-      margin-left: -3%;
-      font-size: 0.6em; } }
-
-@media screen and (max-width: 768px) {
-  #menu {
-    margin-right: -3%; } }
-@media screen and (max-width: 425px) {
-  #menu {
-    width: 100%; } }
-
-@media screen and (max-width: 768px) {
-  .navHeaderCollapse {
-    margin-top: 1%; } }
-@media screen and (max-width: 2560px) {
-  .navHeaderCollapse ul li {
-    height: 3em; } }
-@media screen and (max-width: 1024px) {
-  .navHeaderCollapse ul li {
-    height: 4.5em;
-    margin-top: -0.5%; } }
-@media screen and (max-width: 768px) {
-  .navHeaderCollapse ul li {
-    height: 4.5em;
-    margin-top: -0.1%; } }
-@media screen and (max-width: 425px) {
-  .navHeaderCollapse ul li {
-    display: inline-block;
-    margin-top: 1%; } }
-@media screen and (max-width: 2560px) {
-  .navHeaderCollapse ul li a {
-    margin-top: 0.8em; } }
-@media screen and (max-width: 1440px) {
-  .navHeaderCollapse ul li a {
-    margin-top: -0.1em; } }
-@media screen and (max-width: 1024px) {
-  .navHeaderCollapse ul li a {
-    margin-top: 0em; } }
-@media screen and (max-width: 768px) {
-  .navHeaderCollapse ul li a {
-    margin-top: 0em;
-    font-size: 1.22em; } }
-@media screen and (max-width: 2560px) {
-  .navHeaderCollapse ul li a .glyphicon-chevron-down {
-    font-size: 0.7em; } }
-@media screen and (max-width: 1440px) {
-  .navHeaderCollapse ul li a .glyphicon-chevron-down {
-    font-size: 0.7em; } }
-.navHeaderCollapse ul li:hover {
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
   background-color: #10528a; }
 
-@media screen and (max-width: 2560px) {
-  #barraMenu {
-    margin-top: -0.5%;
-    margin-right: -50%;
-    font-size: 1.3em; } }
-@media screen and (max-width: 1440px) {
-  #barraMenu {
-    margin-top: 0.3%;
-    margin-right: 0%;
-    font-size: 1em;
-    margin-bottom: -0.1%; } }
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+  background-color: #10528a; }
 
-#botonResponsive {
-  margin-top: 3.5%;
-  margin-bottom: 0%; }
-  @media screen and (max-width: 375px) {
-    #botonResponsive {
-      margin-top: 4%; } }
-  @media screen and (max-width: 320px) {
-    #botonResponsive {
-      margin-top: 4.5%; } }
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover {
+  background-color: #10528a; }
+
+#negro {
+  background-color: #000;
+  border-color: #000;
+  color: white; }
+  #negro a {
+    color: white; }
+  #negro li ul {
+    background-color: #000; }
+    #negro li ul li {
+      background-color: #000;
+      border-color: #000; }
+    #negro li ul li.divider {
+      background-color: white; }
+  #negro li:hover {
+    background-color: #10528a; }
 
 .user {
   margin-left: 8%;
-  color: #000; }
+  color: white; }
   @media screen and (max-width: 425px) {
     .user {
       color: white;
       font-size: 1em; } }
 
-.dropdown-menu #hover a {
-  text-decoration: none;
-  text-align: center;
-  color: black;
-  width: 100%; }
-  @media screen and (max-width: 425px) {
-    .dropdown-menu #hover a {
-      color: white;
-      font-size: 1.5em; } }
-.dropdown-menu #hover a:hover {
-  color: white;
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
   background-color: #10528a; }
-  .dropdown-menu #hover a:hover div:hover {
-    background-color: #10528a; }
-@media screen and (max-width: 768px) {
-  .dropdown-menu #hover {
-    font-size: 10px; } }
-@media screen and (max-width: 2560px) {
-  .dropdown-menu {
-    font-size: 1em;
-    width: 12em; } }
-@media screen and (max-width: 1440px) {
-  .dropdown-menu {
-    font-size: 1em;
-    width: 12em; } }
-@media screen and (max-width: 1024px) {
-  .dropdown-menu {
-    font-size: 1.3em;
-    width: 10em; } }
-@media screen and (max-width: 768px) {
-  .dropdown-menu {
-    font-size: 1.3em;
-    width: 10em; } }
 
 #cicloImagenes {
   margin-left: 30%;
@@ -326,6 +211,11 @@ body {
   background: #b3bdbd;
   min-height: 39em; }
   @media screen and (max-width: 425px) {
+    .columDerecha {
+      display: block;
+      position: relative;
+      margin-top: 1%; } }
+  @media screen and (max-width: 768px) {
     .columDerecha {
       display: block;
       position: relative;
@@ -385,6 +275,20 @@ body {
   .areaTrabajo .panel-title {
     font-size: 1.3em; } }
 
+@media (max-width: 768px) {
+  .form-horizontal .control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: left; } }
+
+@media screen and (max-width: 1024px) {
+  .control-label {
+    margin-right: 0%;
+    margin-left: 0%; } }
+@media screen and (max-width: 768px) {
+  .control-label {
+    margin-right: -5%;
+    margin-left: 5%; } }
 @media screen and (max-width: 425px) {
   .control-label {
     margin-right: -6%;
@@ -411,7 +315,7 @@ body {
     font-size: 1em; } }
 @media screen and (max-width: 768px) {
   .form-control {
-    width: 97%;
+    width: 90%;
     height: 3em;
     font-size: 1.1em; } }
 @media screen and (max-width: 425px) {

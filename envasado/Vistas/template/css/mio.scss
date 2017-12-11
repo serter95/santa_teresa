@@ -41,18 +41,6 @@ $color-rojo: #c12e2a;
   margin-left: 1%;
 }
 
-.enfocar
-{
-	background-color: $color-azul;
-  color: #fff;
-}
-
-.navbar-inverse .navbar-nav>li>a
-{
-	color: #fff;
-  //margin-top: 1.5em;
-}
-
 //////////COL-///////////////
 .row {
   margin-bottom: 20px;
@@ -281,176 +269,54 @@ body
     }
 }
 
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+  background-color: $color-azul;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+  background-color: $color-azul;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover{
+  background-color: $color-azul;
+}
+
 #negro
 {
-  background: $color-negro;
+  background-color: $color-negro;
   border-color: $color-negro;
+  color:white;
 
-  @media screen and (max-width: $pantalla-Tablet)
-  {
-    margin-top: -9px;
-  }
-}
-
-.blancoTitulo
-{
-  margin-left: 0%;
-  font-size: 1.2em;
-  color: #fff;
-  display: inline-block;
-
-  @media screen and (max-width: $pantalla-4K)
-  {
-    margin-top: 3.5%;
-    margin-left: -90%;
-    font-size: 2.5em;
-  }
-  @media screen and (max-width: $pantalla-Laptop-L)
-  {
-    margin-top: 0%;
-    margin-left: 0%;
-    font-size: 1em;
+  a{
+    color:white;
   }
 
-  @media screen and (max-width: $pantalla-Tablet)
-  {
-    margin-top: 2%;
-    margin-left: 0%;
-    font-size: 0.8em;
-  }
+  li{
+    ul{
+      background-color: $color-negro;
 
-  @media screen and (max-width: $pantalla-Mobile-S)
-  {
-    margin-top: 2%;
-    margin-left: -3%;
-    font-size: 0.6em;
-  }
-}
-
-#menu
-{
-  @media screen and (max-width: $pantalla-Tablet)
-  {
-    margin-right: -3%;
-  }
-
-  @media screen and (max-width: $pantalla-Mobile-L)
-  {
-    width: 100%;
-  }
-}
-
-.navHeaderCollapse
-{
-  @media screen and (max-width: $pantalla-Tablet)
-  {
-    margin-top: 1%;
-  }
-  ul
-  {
-    li
-    {
-      @media screen and (max-width: $pantalla-4K)
-      {
-        height: 3em;
+      li{
+        background-color: $color-negro;
+        border-color: $color-negro;
       }
 
-      @media screen and (max-width: $pantalla-Laptop)
-      {
-        height: 4.5em;
-        margin-top: -0.5%;
-      }
-
-      @media screen and (max-width: $pantalla-Tablet)
-      {
-        height: 4.5em;
-        margin-top: -0.1%;
-      }
-      @media screen and (max-width: $pantalla-Mobile-L)
-      {
-        display: inline-block;
-        margin-top: 1%;
-      }
-
-      a
-      {
-        @media screen and (max-width: $pantalla-4K)
-        {
-          margin-top: 0.8em;
-        }
-        @media screen and (max-width: $pantalla-Laptop-L)
-        {
-          margin-top: -0.1em;
-        }
-        @media screen and (max-width: $pantalla-Laptop)
-        {
-          margin-top: 0em;
-        }
-        @media screen and (max-width: $pantalla-Tablet)
-        {
-          margin-top: 0em;
-          font-size: 1.22em;
-        }
-
-        .glyphicon-chevron-down
-        {
-          @media screen and (max-width: $pantalla-4K)
-          {
-            font-size: 0.7em;
-          }
-
-          @media screen and (max-width: $pantalla-Laptop-L)
-          {
-            font-size: 0.7em;
-          }
-        }
+      li.divider{
+        background-color: white;
       }
 
     }
-    li:hover
-    {
-      background-color: $color-azul;
-    }
-  }
-}
-
-#barraMenu
-{
-  @media screen and (max-width: $pantalla-4K)
-  {
-    margin-top: -0.5%;
-    margin-right: -50%;
-    font-size: 1.3em;
-  }
-  @media screen and (max-width: $pantalla-Laptop-L)
-  {
-    margin-top: 0.3%;
-    margin-right: 0%;
-    font-size: 1em;
-    margin-bottom: -0.1%;
-  }
-}
-
-#botonResponsive
-{
-  margin-top: 3.5%;
-  margin-bottom: 0%;
-
-  @media screen and (max-width: $pantalla-Mobile-M)
-  {
-    margin-top: 4%;
   }
 
-  @media screen and (max-width: $pantalla-Mobile-S)
+  li:hover
   {
-    margin-top: 4.5%;
+    background-color: $color-azul;
   }
 }
 
 .user
 {
   margin-left: 8%;
-  color: #000;
+  color: white;
 
   @media screen and (max-width: $pantalla-Mobile-L)
   {
@@ -459,60 +325,10 @@ body
   }
 }
 
-.dropdown-menu
-{
-  #hover
-  {
-    a
-    {
-      text-decoration: none;
-      text-align: center;
-      color: black;
-      width: 100%;
-
-      @media screen and (max-width: $pantalla-Mobile-L)
-      {
-        color: white;
-        font-size: 1.5em;
-      }
-    }
-
-    a:hover
-    {
-      color: white;
-      background-color: $color-azul;
-      div:hover
-      {
-        background-color: $color-azul;
-      }
-    }
-    @media screen and (max-width: $pantalla-Tablet)
-    {
-      font-size: 10px;
-    }
-  }
-
-  @media screen and (max-width: $pantalla-4K)
-  {
-    font-size: 1em;
-    width: 12em;
-  }
-  @media screen and (max-width: $pantalla-Laptop-L)
-  {
-    font-size: 1em;
-    width: 12em;
-  }
-  @media screen and (max-width: $pantalla-Laptop)
-  {
-    font-size: 1.3em;
-    width: 10em;
-  }
-  @media screen and (max-width: $pantalla-Tablet)
-  {
-    font-size: 1.3em;
-    width: 10em;
-  }
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  background-color: $color-azul;
 }
+
 
 #cicloImagenes
 {
@@ -533,6 +349,13 @@ body
   min-height: 39em;
 
   @media screen and (max-width: $pantalla-Mobile-L)
+  {
+    display: block;
+    position: relative;
+    margin-top: 1%;
+  }
+
+  @media screen and (max-width: $pantalla-Tablet)
   {
     display: block;
     position: relative;
@@ -631,8 +454,28 @@ body
   }
 }
 
+.form-horizontal .control-label {
+  @media (max-width: $pantalla-Tablet){
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: left;
+  }
+}
+
 .control-label
 {
+  @media screen and (max-width: $pantalla-Laptop)
+  {
+    margin-right: 0%;
+    margin-left: 0%;
+  }
+
+  @media screen and (max-width: $pantalla-Tablet)
+  {
+    margin-right: -5%;
+    margin-left: 5%;
+  }
+
   @media screen and (max-width: $pantalla-Mobile-L)
   {
     margin-right: -6%;
@@ -668,7 +511,7 @@ body
     }
     @media screen and (max-width: $pantalla-Tablet)
     {
-      width: 97%;
+      width: 90%;
       height: 3em;
       font-size: 1.1em;
     }

@@ -29,8 +29,11 @@
 		public function historial($parametros)
 		{
 			return $datos=$this->produccion->historial($parametros);
-			var_dump($datos);
-			//die();
+		}
+
+		public function pdf($id)
+		{
+			return $datos=$this->produccion->pdf($id);
 		}
 
 		public function angular($datos)

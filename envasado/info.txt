@@ -2,8 +2,8 @@ para activar el modulo mod_rewrite primero hay que ir al archivo de configuracio
 conseguir la linea que diga 'LoadModule rewrite_module modules/mod_rewrite.so' (linea: 163 o la que sea de tu apache) y quitar el '#'
 luego buscar la linea 'AllowOverride None' y cambiar por 'AllowOverride All' (linea: 251 o la que sea en el tuyo), esta linea debe estar dentro de una etiqueta la cual es la siguiente:
 
- <Directory "/opt/PostgreSQL/EnterpriseDB-ApachePHP/apache/www"> 
- // AQUI puede ser otra direccion Ejemplo /var/www ó 
+ <Directory "/opt/PostgreSQL/EnterpriseDB-ApachePHP/apache/www">
+ // AQUI puede ser otra direccion Ejemplo /var/www ó
 
     aqui hay otras cosas escritas y una de ellas es esto:
 
@@ -28,3 +28,12 @@ luego buscar la linea 'AllowOverride None' y cambiar por 'AllowOverride All' (li
  Activar RewriteEngine
 
  Si nada de esto sirve busca como activar rewrite_module en wamp en google
+
+ COMANDOS DE BD
+
+ mysql --user=****** --password=****** db_nom < /Ruta/Hacia/archivo_dump.SQL
+
+ DROP DATABASE db_nom
+
+ CREATE DATABASE db_nom CHARACTER SET utf8 COLLATE utf8_unicode_ci
+ 

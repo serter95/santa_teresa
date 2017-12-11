@@ -15,8 +15,20 @@
 
 		public function detalle($id)
 		{
-			$produccion=$this->con->seleccionar("p.id, p.id_linea, p.fecha_hora_inicio, p.fecha_hora_fin, p.cantidad_paletas, p.id_botella, p.id_caja, p.id_etiqueta, p.id_tapa, l.nombre as nombre_linea, pe.cedula, pe.nombres, pe.apellidos, pe.jornada, pa.nombre as nombre_paleta, pa.bulk, pa.cantidad_bulks, planif.estimacion_total", "produccion p, lineas l, personal pe, paleta pa, planificacion planif", "l.id=p.id_linea AND pe.id=p.supervisor AND pa.id_botella=p.id_botella AND planif.id=p.id_planificacion AND p.estatus=1 AND l.estatus=1 AND pe.estatus=1 AND pa.estatus=1 AND planif.estatus=1 AND p.id='$id' LIMIT 1");
+			$produccion=$this->con->seleccionar("p.id, p.id_linea, p.fecha_hora_inicio, p.fecha_hora_fin, p.cantidad_paletas, p.id_botella, p.id_caja, p.id_etiqueta, p.id_tapa, p.id_planificacion, l.nombre as nombre_linea, pe.cedula, pe.nombres, pe.apellidos, pe.jornada, pa.nombre as nombre_paleta, pa.bulk, pa.cantidad_bulks", "produccion p, lineas l, personal pe, paleta pa", "l.id=p.id_linea AND pe.id=p.supervisor AND pa.id_botella=p.id_botella AND p.estatus=1 AND l.estatus=1 AND pe.estatus=1 AND pa.estatus=1 AND p.id='$id' LIMIT 1");
 			$produccionTotal=$produccion->fetch(\PDO::FETCH_ASSOC);
+
+			if ($produccionTotal['id_planificacion']) {
+				$planificacion=$this->con->seleccionar('estimacion_total','planificacion',"id={$produccionTotal['id_planificacion']}");
+				$planificacion=$planificacion->fetch(\PDO::FETCH_ASSOC);
+				$estimacion=$planificacion['estimacion_total'];
+			} else {
+				$estimacion='Sin Estimación';
+			}
+
+			$planificacion=array(
+				'estimacion'=>$estimacion
+			);
 
 			$botella=$this->con->seleccionar("b.nombre as nombre_botella, b.distribucion, m.tipo, p.nombre as nombre_proveedor","botellas b, medidas m, proveedor p","b.id_medida=m.id AND b.id_proveedor=p.id AND b.estatus=1 AND m.estatus=1 AND p.estatus=1 AND b.id='".$produccionTotal['id_botella']."' LIMIT 1");
 			$botella=$botella->fetch(\PDO::FETCH_ASSOC);
@@ -32,7 +44,7 @@
 
 			$array=$this->contadores($produccionTotal['id']);
 
-			array_push($produccionTotal, $botella, $caja, $etiqueta, $tapa, $array);
+			array_push($produccionTotal, $botella, $caja, $etiqueta, $tapa, $array, $planificacion);
 
 			return $produccionTotal;
 		}
@@ -80,6 +92,44 @@
 			return $this->con->seleccionar("p.hora_fecha, p.hora_fecha_reinicio, e.nombre", "parada_emergencia p, estacion e", "p.id_estacion=e.id AND p.estatus=1 AND e.estatus=1 AND p.id_produccion='$id'");
 		}
 
+		public function pdf($id)
+		{
+			$produccion=$this->con->seleccionar("p.id, p.id_linea, p.fecha_hora_inicio, p.fecha_hora_fin, p.cantidad_paletas, p.id_botella, p.id_caja, p.id_etiqueta, p.id_tapa, p.id_planificacion, l.nombre as nombre_linea, pe.cedula, pe.nombres, pe.apellidos, pe.jornada, pa.nombre as nombre_paleta, pa.bulk, pa.cantidad_bulks", "produccion p, lineas l, personal pe, paleta pa", "l.id=p.id_linea AND pe.id=p.supervisor AND pa.id_botella=p.id_botella AND p.estatus=1 AND l.estatus=1 AND pe.estatus=1 AND pa.estatus=1 AND p.id='$id' LIMIT 1");
+			$produccionTotal=$produccion->fetch(\PDO::FETCH_ASSOC);
+
+			if ($produccionTotal['id_planificacion']) {
+				$planificacion=$this->con->seleccionar('estimacion_total','planificacion',"id={$produccionTotal['id_planificacion']}");
+				$planificacion=$planificacion->fetch(\PDO::FETCH_ASSOC);
+				$estimacion=$planificacion['estimacion_total'];
+			} else {
+				$estimacion='Sin Estimación';
+			}
+
+			$planificacion=array(
+				'estimacion'=>$estimacion
+			);
+
+			$botella=$this->con->seleccionar("b.nombre as nombre_botella, b.distribucion, m.tipo, p.nombre as nombre_proveedor","botellas b, medidas m, proveedor p","b.id_medida=m.id AND b.id_proveedor=p.id AND b.estatus=1 AND m.estatus=1 AND p.estatus=1 AND b.id='".$produccionTotal['id_botella']."' LIMIT 1");
+			$botella=$botella->fetch(\PDO::FETCH_ASSOC);
+
+			$caja=$this->con->seleccionar("c.nombre as nombre_caja, c.medida as medida_caja, c.cantidad_botellas, p.nombre as nombre_proveedor_caja","cajas c, proveedor p","c.id_proveedor=p.id AND c.estatus=1 AND p.estatus=1 AND c.id='".$produccionTotal['id_caja']."' LIMIT 1");
+			$caja=$caja->fetch(\PDO::FETCH_ASSOC);
+
+			$etiqueta=$this->con->seleccionar("e.nombre as nombre_etiqueta, e.medida as medida_etiqueta, p.nombre as nombre_proveedor_etiqueta","etiqueta e, proveedor p","e.id_proveedor=p.id AND e.estatus=1 AND p.estatus=1 AND e.id='".$produccionTotal['id_etiqueta']."' LIMIT 1");
+			$etiqueta=$etiqueta->fetch(\PDO::FETCH_ASSOC);
+
+			$tapa=$this->con->seleccionar("t.nombre as nombre_tapa, t.medida as medida_tapa, p.nombre as nombre_proveedor_tapa","tapas t, proveedor p","t.id_proveedor=p.id AND t.estatus=1 AND p.estatus=1 AND t.id='".$produccionTotal['id_tapa']."' LIMIT 1");
+			$tapa=$tapa->fetch(\PDO::FETCH_ASSOC);
+
+			$array=$this->contadores($produccionTotal['id']);
+
+			$personal=$this->con->seleccionar("p.fecha_hora_inicio, p.fecha_hora_fin, pe.cedula, pe.nombres, pe.apellidos, e.nombre, l.nombre as nombre_linea", "produccion p, personal_trabajo pt, personal pe, estacion e, lineas l", "p.id=pt.id_produccion AND pt.id_personal=pe.id AND pt.id_estacion=e.id AND p.id_linea=l.id AND p.estatus=1 AND pt.estatus=1 AND pe.estatus=1 AND e.estatus=1 AND l.estatus=1 AND pt.id_produccion='$id'");
+
+			array_push($produccionTotal, $botella, $caja, $etiqueta, $tapa, $array, $planificacion, $personal);
+
+			return $produccionTotal;
+		}
+
 		public function actualizarlinea($id, $id2)
 		{
 			if ($id2)
@@ -99,10 +149,17 @@
 
 		public function barraderecha($id)
 		{
-			$lineas=$this->con->seleccionar("l.nombre AS l_nombre, l.estado, l.imagen, p.id, b.nombre, p.fecha_hora_inicio, p.fecha_hora_fin, pe.nombres, pe.apellidos, pla.estimacion_total", "lineas l, produccion p, botellas b, personal pe, planificacion pla", "l.id=p.id_linea AND p.id_botella=b.id AND p.supervisor=pe.id AND pla.id=p.id_planificacion AND l.estatus=1 AND p.estatus=1 AND b.estatus=1 AND pe.estatus=1 AND pla.estatus=1 AND l.id='$id' AND p.id_linea='$id' ORDER BY p.id DESC");
-
+			$lineas=$this->con->seleccionar("l.nombre AS l_nombre, l.estado, l.imagen, p.id, b.nombre, p.fecha_hora_inicio, p.fecha_hora_fin, p.id_botella, p.id_planificacion, c.cantidad_botellas, pe.nombres, pe.apellidos", "lineas l, produccion p, botellas b, cajas c ,personal pe", "l.id=p.id_linea AND p.id_botella=b.id AND p.supervisor=pe.id AND c.id=p.id_caja AND l.estatus=1 AND p.estatus=1 AND b.estatus=1 AND pe.estatus=1 AND c.estatus=1 AND l.id='$id' AND p.id_linea='$id' ORDER BY p.id DESC");
 			$num=$lineas->rowCount();
 			$lineas=$lineas->fetch(\PDO::FETCH_ASSOC);
+
+			if ($lineas['id_planificacion']) {
+				$planificacion=$this->con->seleccionar('estimacion_total','planificacion',"id={$lineas['id_planificacion']}");
+				$planificacion=$planificacion->fetch(\PDO::FETCH_ASSOC);
+				$estimacion=$planificacion['estimacion_total'];
+			} else {
+				$estimacion='Sin Estimación';
+			}
 
 			$paradas=$this->con->seleccionar("hora_fecha_reinicio","parada_emergencia","id_produccion='".$lineas['id']."' AND estatus=1 ORDER BY id DESC");
 
@@ -114,8 +171,12 @@
 				}
 			}
 
+			$paletas=$this->con->seleccionar("bulk","paleta","id_botella='".$lineas['id_botella']."' AND estatus=1");
+			$paletas=$paletas->fetch(\PDO::FETCH_ASSOC);
+
 			$paradas2=$this->con->seleccionar("e.nombre","parada_emergencia p, estacion e","p.id_estacion=e.id AND p.id_produccion='".$lineas['id']."' AND p.estatus=1 AND e.estatus=1 ORDER BY p.id DESC");
 			$nomParadas=$paradas2->fetch(\PDO::FETCH_ASSOC);
+
 
 			$contadores=$this->contadores($lineas['id']);
 
@@ -130,8 +191,9 @@
 				'producto' => $lineas['nombre'],
 				'fecha_hora_inicio' => $lineas['fecha_hora_inicio'],
 				'fecha_hora_fin' => $lineas['fecha_hora_fin'],
-				//'botellasEstimadas' => 'En Espera...',
-				'cajasEstimadas' => $lineas['estimacion_total'],
+				'cantidadBotellasCajas' => $lineas['cantidad_botellas'],
+				'cantidadBotellasPaleta'=>$paletas['bulk'],
+				'cajasEstimadas' => $estimacion,
 				'ultimaUbicacion' => $nomParadas['nombre'],
 				'paradas' => $contadores['parada_emergencia'],
 				'totalCamadas' => $contadores['bulks_usados'],

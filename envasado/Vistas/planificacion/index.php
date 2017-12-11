@@ -21,7 +21,7 @@
 					<th>Fecha de Producción</th>
 					<th>Linea</th>
 					<th>Estimación Total</th>
-					<th>Usada</th>
+					<th class="hidden-xs">Usada</th>
 					<th>Acción</th>
 				</tr>
 			</thead>
@@ -33,9 +33,9 @@
 				<td><?php echo $array['fecha_produccion'];?></td>
 				<td><?php echo $array['nombre'];?></td>
 				<td><?php echo $array['estimacion_total'];?></td>
-				<td>
+				<td class="hidden-xs">
 					<?php
-						if ($array['usada']==1) {
+						if ($array['usado']==1) {
 						  echo "Si";
 						} else {
 						  echo "No";
@@ -44,7 +44,7 @@
 				</td>
 				<td>
 					<?php
-						if ($array['usada']==0) {
+						if ($array['usado']==0) {
 					?>
 					<a class="btn btn-primary" href="<?php echo URL;?>planificacion/editar/<?php echo $array['id'];?>" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
 					<a class="btn btn-danger" href="#" onclick="eliminar('planificacion', '<?php echo $array['fecha_produccion']." ".$array['nombre'];?>', '<?php echo $array['id']; ?>', 'Usted está seguro que desea eliminar la planificación ');" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a>

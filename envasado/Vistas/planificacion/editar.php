@@ -20,7 +20,7 @@
 				<span ng-repeat="objeto in editPlanificacion">
 
           <div class="form-group">
-						<label for="fecha_produccion" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label">Fecha de Producción:</label>
+						<label for="fecha_produccion" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label">Fecha:</label>
 						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
 							<input class="form-control" id="fecha_produccion" type="text"
 							name="fecha_produccion" title="Esta es la fecha de la planificacion"
@@ -29,7 +29,7 @@
 					</div>
 
 					<div class="form-group">
-						<label multiple class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label" for="linea">Linea de Producción:</label>
+						<label multiple class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label" for="linea">Linea:</label>
 						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
 							<select class="form-control" ng-change="validacion()" name="linea" id="linea" title="Seleccione una opción" ng-model="objeto.linea" required>
 								<option value="">Seleccione una opción</option>
@@ -41,9 +41,9 @@
 					</div>
 
 					<div class="form-group">
-						<label for="estimacion_total" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label">Estimación Total:</label>
+						<label for="estimacion_total" class="col-lg-3 col-md-3 col-sm-3 col-xs-4 control-label">Estimación:</label>
 						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
-							<input class="form-control" id="estimacion_total" ng-blur="validacion()" type="text"
+							<input class="form-control" id="estimacion_total" ng-init="validacion()" ng-blur="validacion()" ng-keyup="validacion()" type="text"
 							name="estimacion_total" title="Ingrese el número de cajas llenas estimadas Ej:5000"
 							placeholder="Ejemplo: 5000" ng-model="objeto.estimacion_total"
 							ng-pattern="'^[1-9]+([0-9]+)?'" min="1" required>
